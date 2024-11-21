@@ -7,6 +7,7 @@ const homeRouter = require("./routes/homeRouter");
 const aboutRouter = require("./routes/aboutRouter");
 const contactRouter = require("./routes/contactRouter");
 const logintRouter = require("./routes/loginRouter");
+const registerRouter = require("./routes/registerRouter");
 
 app.use(
     express.urlencoded({
@@ -33,6 +34,7 @@ app.use("/", homeRouter);
 app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);
 app.use("/login", logintRouter);
+app.use("/register", registerRouter);
 
 conn
   .sync()
