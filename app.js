@@ -6,6 +6,7 @@ const conn = require("./db/conn");
 const homeRouter = require("./routes/homeRouter");
 const aboutRouter = require("./routes/aboutRouter");
 const contactRouter = require("./routes/contactRouter");
+const logintRouter = require("./routes/loginRouter");
 
 app.use(
     express.urlencoded({
@@ -31,6 +32,7 @@ app.use(express.static("public"));
 app.use("/", homeRouter);
 app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);
+app.use("/login", logintRouter);
 
 conn
   .sync()
