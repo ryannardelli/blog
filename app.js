@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const conn = require("./db/conn");
 const homeRouter = require("./routes/homeRouter");
+const aboutRouter = require("./routes/aboutRouter");
 
 app.use(
     express.urlencoded({
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/", homeRouter);
+app.use("/about", aboutRouter);
 
 conn
   .sync()
