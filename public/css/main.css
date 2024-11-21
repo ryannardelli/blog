@@ -6,3 +6,68 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
+/* Posts Section */
+#posts {
+    background-color: #f8f9fa;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#posts h2 {
+    color: #343a40;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    filter: brightness(90%);
+    transition: filter 0.3s ease;
+}
+
+.card:hover .card-img-top {
+    filter: brightness(100%);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    color: #212529; 
+    font-weight: 600;
+}
+
+.card-text {
+    color: #6c757d; 
+    font-size: 0.9rem;
+}
+
+/* Botões dos Cards */
+.card .btn {
+    border-radius: 30px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card .btn-outline-primary {
+    border-color: #0d6efd;
+    color: #0d6efd;
+}
+
+.card .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
