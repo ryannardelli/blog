@@ -8,6 +8,7 @@ const aboutRouter = require("./routes/aboutRouter");
 const contactRouter = require("./routes/contactRouter");
 const logintRouter = require("./routes/loginRouter");
 const registerRouter = require("./routes/registerRouter");
+const dashboardRouter = require("./routes/dashboardRouter");
 
 app.use(
     express.urlencoded({
@@ -35,6 +36,7 @@ app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);
 app.use("/login", logintRouter);
 app.use("/register", registerRouter);
+app.use("/dashboard", dashboardRouter);
 
 conn
   .sync()
