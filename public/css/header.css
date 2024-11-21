@@ -1,0 +1,56 @@
+a.nav-link {
+    text-decoration: none;
+    color: #dcdcdc;
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+    margin-left: 1.5rem
+}
+
+a.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff6347;
+    transition: width 0.3s ease;
+}
+
+a.nav-link:hover::before {
+    width: 100%;
+}
+
+.btn-outline-light {
+    border-width: 2px;
+    transition: all 0.3s;
+}
+
+.btn-outline-light:hover {
+    background-color: #ffffff;
+    color: #212529;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #084298;
+    border-color: #084298;
+}
+
+.company-name {
+    font-size: 1.5rem; /* Tamanho maior para destaque */
+    letter-spacing: 1px; /* Espaçamento suave entre letras */
+    text-transform: uppercase; /* Dá um visual profissional */
+}
+
+/* Hover Effect */
+.navbar-brand:hover .company-name {
+    color: #0d6efd; /* Destaque no hover */
+    transition: color 0.3s ease;
+}
