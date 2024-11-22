@@ -36,8 +36,11 @@ app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);
 app.use("/login", logintRouter);
 app.use("/register", registerRouter);
+
 app.use("/dashboard", dashboardRouter);
 app.use("/dashboard/profile", dashboardRouter);
+app.use("/dashboard/feed", dashboardRouter);
+app.use("/dashboard/forum", dashboardRouter);
 
 conn
   .sync()

@@ -19,4 +19,24 @@ module.exports = class ContactController {
             console.log('Erro ao renderizar o profile');
         }
     }
+
+    static showPosts(req, res) {
+        try {
+            res.render('dashboard/feed', {
+                layout: "dashboard"
+            });
+        } catch(err) {
+            console.log('Erro ao renderizar o posts');
+        }
+    }
+
+    static showForum(req, res) {
+        try {
+            res.render('dashboard/forum', {
+                layout: "dashboard"
+            });
+        } catch(err) {
+            console.log('Erro ao renderizar o fórum');
+        }
+    }
 }

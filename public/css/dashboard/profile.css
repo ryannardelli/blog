@@ -1,0 +1,77 @@
+/* profile */
+
+.profile-header {
+    background-color: #4e73df;
+    color: #fff;
+    padding: 50px 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.profile-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.profile-header p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin-top: -50px;
+}
+
+.profile-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.profile-card h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4e73df;
+}
+
+.profile-card p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.list-group-item {
+    border: none;
+    padding: 12px 0;
+    font-size: 1.1rem;
+}
+
+.list-group-item strong {
+    color: #333;
+}
+
+/* Efeito de hover nas informações do perfil */
+.list-group-item:hover {
+    background-color: #f1f1f1;
+    transition: 0.3s;
+}
+
+.btn-custom {
+    background-color: #4e73df;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom:hover {
+    background-color: #2e59d9;
+}
