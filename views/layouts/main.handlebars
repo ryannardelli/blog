@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/main.css">
     <title>Blog</title>
 </head>
+
 <body>
-     {{#if showHeaderFooter}}
-        {{> header}}
+
+    {{!-- {{#if successUpdate}}
+    <div class="alert alert-success mt-4 alert-dismissible fade show" role="alert">
+        Livro atualizado com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}} --}}
+
+
+    {{#if showHeaderFooter}}
+    {{> header}}
     {{/if}}
+
+     {{#if successRegister}}
+        <div class="alert alert-success mt-4 alert-dismissible fade show m-4" role="alert">
+            Cadastro realizado com sucesso!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {{/if}}
+
 
     {{{body}}}
 
-     {{#if showHeaderFooter}}
-        {{> footer}}
+    {{#if showHeaderFooter}}
+    {{> footer}}
     {{/if}}
 </body>
+
 </html>
