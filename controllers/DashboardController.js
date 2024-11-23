@@ -49,4 +49,14 @@ module.exports = class ContactController {
             console.log('Erro ao renderizar o report');
         }
     }
+
+    static showConfig(req, res) {
+        try {
+            res.render('dashboard/config', {
+                layout: "dashboard"
+            });
+        } catch(err) {
+            console.log('Erro ao renderizar o config');
+        }
+    }
 }

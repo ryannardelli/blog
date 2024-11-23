@@ -7,4 +7,5 @@ router.get('/profile', DashboardController.showProfile);
 router.get('/feed', DashboardController.showPosts);
 router.get('/forum', DashboardController.showForum);
 router.get('/report', DashboardController.showReport);
+router.get('/config', DashboardController.showConfig);
 module.exports = router;

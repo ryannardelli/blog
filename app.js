@@ -42,6 +42,7 @@ app.use("/dashboard/profile", dashboardRouter);
 app.use("/dashboard/feed", dashboardRouter);
 app.use("/dashboard/forum", dashboardRouter);
 app.use("/dashboard/report", dashboardRouter);
+app.use("/dashboard/config", dashboardRouter);
 
 conn
   .sync()
