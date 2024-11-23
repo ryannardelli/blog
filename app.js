@@ -45,7 +45,7 @@ app.use("/dashboard/report", dashboardRouter);
 app.use("/dashboard/config", dashboardRouter);
 
 conn
-  .sync()
+  .sync({force: true})
   .then(() => {
     app.listen(3000);
   })

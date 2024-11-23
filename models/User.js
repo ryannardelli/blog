@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
 const db = require("../db/conn");
 
 const User = db.define("User", {
@@ -17,10 +18,16 @@ const User = db.define("User", {
   },
 
   password: {
-    type: DataTypes.STRING(250),
+    type: DataTypes.STRING(250), // O hash será armazenado aqui
     allowNull: false,
     validate: {
       len: [6, 250], // Senha com no mínimo 6 caracteres
+      isStrongPassword(value) {
+        const strongPasswordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+        if (!strongPasswordRegex.test(value)) {
+          throw new Error("A senha deve conter pelo menos uma letra, um número e um caractere especial.");
+        }
+      },
     },
   },
 
@@ -32,8 +39,39 @@ const User = db.define("User", {
   profile_picture: {
     type: DataTypes.STRING,
     allowNull: true,
-    defaultValue: '/public/images/user_img.png',
+    validate: {
+      isUrl: true, // Garante que seja uma URL válida
+    },
   },
 });
+
+// Hash da senha antes de criar o usuário
+User.beforeCreate(async (user) => {
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
+});
+
+// Hash da senha antes de atualizar o usuário
+User.beforeUpdate(async (user) => {
+  if (user.changed("password")) {
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+  }
+});
+
+// Método para autenticar usuário (validar senha)
+User.authenticate = async (email, password) => {
+  const user = await User.findOne({ where: { email } });
+  if (!user) {
+    throw new Error("Usuário não encontrado.");
+  }
+
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    throw new Error("Senha inválida.");
+  }
+
+  return user; // Retorna o usuário autenticado
+};
 
 module.exports = User;

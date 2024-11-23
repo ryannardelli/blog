@@ -1,40 +1,114 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/register.css">
 
 <body>
     <div class="registration-container">
         <h2>Cadastro</h2>
-        <form autocomplete="off" method="post" action="/register/create">
+        <form autocomplete="off" method="post" action="/register/create" class="needs-validation" novalidate>
+            <!-- Campo de Nome -->
             <div class="mb-3">
                 <input type="text" class="form-control" id="name" name="name" placeholder="Seu Nome Completo" required>
+                <div class="invalid-feedback">Por favor, insira seu nome completo.</div>
             </div>
 
             <!-- Campo de E-mail -->
             <div class="mb-3">
                 <input type="email" class="form-control" id="email" name="email" placeholder="Seu E-mail" required>
+                <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
             </div>
 
             <!-- Campo de Função -->
             <div class="mb-3">
-                <input type="text" class="form-control" id="function" name="function" placeholder="Sua função (ex: Estudante, Editor, Leitor)" required>
+                <input type="text" class="form-control" id="function" name="function"
+                    placeholder="Sua função (ex: Estudante, Editor, Leitor)" required>
+                <div class="invalid-feedback">Por favor, insira sua função.</div>
             </div>
 
             <!-- Campo de Senha -->
-            <div class="mb-3">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Sua Senha" required>
+            <div class="mb-3 position-relative">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Sua Senha"
+                    pattern="(?=.*[A-Za-z])(?=.*[\W_]).{6,}" min="6" required>
+                <div class="invalid-feedback">
+                    A senha deve ter no mínimo 6 caracteres, incluir pelo menos uma letra e um caractere especial.
+                </div>
+                <!-- Ícone de Olho para Senha -->
+                <i id="togglePassword" class="fas fa-eye position-absolute"
+                    style="top: 34%; right: 35px; cursor: pointer;"></i>
             </div>
 
             <!-- Campo de Confirmação de Senha -->
-            <div class="mb-3">
+            <div class="mb-3 position-relative">
                 <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Senha" required>
+                <div class="invalid-feedback">
+                    A confirmação de senha deve corresponder à senha.
+                </div>
+                <!-- Ícone de Olho para Confirmar Senha -->
+                <i id="toggleConfirmPassword" class="fas fa-eye position-absolute"
+                    style="top: 34%; right: 35px; cursor: pointer;"></i>
             </div>
 
             <!-- Botão de Registro -->
-            <button type="submit" class="btn-register">Cadastrar</button>
+            <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
         </form>
 
-        <div class="login-link">
+        <div class="login-link mt-3">
             <p>Já tem uma conta? <a href="/login">Faça login</a></p>
         </div>
     </div>
+
+    <script>
+        const forms = document.querySelectorAll('.needs-validation');
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                const password = document.getElementById('password');
+                const confirmPassword = document.getElementById('confirmPassword');
+
+                // Verifica se a senha e a confirmação de senha coincidem
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity('As senhas não coincidem.');
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+
+                // Evita o envio do formulário se houver campos inválidos
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                form.classList.add('was-validated');
+
+                const invalidFields = form.querySelectorAll('.invalid-feedback');
+
+                if (invalidFields.length > 0) {
+                    togglePassword.style.top = '18%';
+                    toggleConfirmPassword.style.top = '20%';
+                }
+
+            }, false);
+        });
+
+
+        // Script para alternar a visibilidade da Senha
+        const passwordField = document.getElementById('password');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+            this.classList.toggle('fa-eye-slash');
+        });
+
+       
+
+        toggleConfirmPassword.addEventListener('click', function () {
+            const type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+            confirmPasswordField.type = type;
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </body>
