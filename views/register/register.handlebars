@@ -5,26 +5,30 @@
     <div class="registration-container">
         <h2>Cadastro</h2>
         <form autocomplete="off">
-            <!-- Campo de Nome -->
-            <div class="form-floating">
+            <div class="mb-3">
                 <input type="text" class="form-control" id="name" placeholder="Seu Nome Completo" required>
-                <label for="name">Nome Completo</label>
             </div>
+
             <!-- Campo de E-mail -->
-            <div class="form-floating">
+            <div class="mb-3">
                 <input type="email" class="form-control" id="email" placeholder="Seu E-mail" required>
-                <label for="email">E-mail</label>
             </div>
+
+            <!-- Campo de Função -->
+            <div class="mb-3">
+                <input type="text" class="form-control" id="function" name="function" placeholder="Sua função (ex: Estudante, Editor, Leitor)" required>
+            </div>
+
             <!-- Campo de Senha -->
-            <div class="form-floating">
+            <div class="mb-3">
                 <input type="password" class="form-control" id="password" placeholder="Sua Senha" required>
-                <label for="password">Senha</label>
             </div>
+
             <!-- Campo de Confirmação de Senha -->
-            <div class="form-floating">
+            <div class="mb-3">
                 <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Senha" required>
-                <label for="confirmPassword">Confirmar Senha</label>
             </div>
+
             <!-- Botão de Registro -->
             <button type="submit" class="btn-register">Cadastrar</button>
         </form>
