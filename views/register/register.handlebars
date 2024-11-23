@@ -4,14 +4,14 @@
 <body>
     <div class="registration-container">
         <h2>Cadastro</h2>
-        <form autocomplete="off">
+        <form autocomplete="off" method="post" action="/register/create">
             <div class="mb-3">
-                <input type="text" class="form-control" id="name" placeholder="Seu Nome Completo" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Seu Nome Completo" required>
             </div>
 
             <!-- Campo de E-mail -->
             <div class="mb-3">
-                <input type="email" class="form-control" id="email" placeholder="Seu E-mail" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Seu E-mail" required>
             </div>
 
             <!-- Campo de Função -->
@@ -21,7 +21,7 @@
 
             <!-- Campo de Senha -->
             <div class="mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Sua Senha" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Sua Senha" required>
             </div>
 
             <!-- Campo de Confirmação de Senha -->
