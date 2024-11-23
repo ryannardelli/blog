@@ -1,4 +1,4 @@
-module.exports = class ContactController {
+module.exports = class DashboardController {
 
     static showDashboardMain(req, res) {
         try {

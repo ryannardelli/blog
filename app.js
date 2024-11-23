@@ -9,6 +9,14 @@ const contactRouter = require("./routes/contactRouter");
 const logintRouter = require("./routes/loginRouter");
 const registerRouter = require("./routes/registerRouter");
 const dashboardRouter = require("./routes/dashboardRouter");
+const session = require('express-session');
+
+app.use(session({
+  secret: 'key secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 60000 } // Sessão expira após 1 minuto (ajuste conforme necessário)
+}));
 
 app.use(
     express.urlencoded({
@@ -45,7 +53,7 @@ app.use("/dashboard/report", dashboardRouter);
 app.use("/dashboard/config", dashboardRouter);
 
 conn
-  .sync({force: true})
+  .sync()
   .then(() => {
     app.listen(3000);
   })

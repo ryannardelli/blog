@@ -4,15 +4,15 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form>
+        <form method="post" action="/login/loginUser" autocomplete="off">
             <!-- Campo de E-mail -->
             <div class="form-floating">
-                <input type="email" class="form-control" id="email" placeholder="Seu E-mail" autocomplete="off" required>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail" autocomplete="off" required>
                 <label for="email">E-mail</label>
             </div>
             <!-- Campo de Senha -->
             <div class="form-floating">
-                <input type="password" class="form-control" id="password" placeholder="Sua Senha" required>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Sua Senha" required>
                 <label for="password">Senha</label>
             </div>
             <!-- Botão de Login -->
