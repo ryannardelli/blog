@@ -39,4 +39,14 @@ module.exports = class ContactController {
             console.log('Erro ao renderizar o fórum');
         }
     }
+
+    static showReport(req, res) {
+        try {
+            res.render('dashboard/report', {
+                layout: "dashboard"
+            });
+        } catch(err) {
+            console.log('Erro ao renderizar o report');
+        }
+    }
 }

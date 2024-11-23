@@ -1,0 +1,44 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/dashboard/report.css">
+<script src="/js/report.js" defer></script>
+
+<body>
+    <section class="mb-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Visitantes</h5>
+                        <h2 class="text-primary">30</h2>
+                        <p class="text-muted">Visitantes únicos no último mês</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Postagens</h5>
+                        <h2 class="text-success">45</h2>
+                        <p class="text-muted">Artigos publicados</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Comentários</h5>
+                        <h2 class="text-danger">14</h2>
+                        <p class="text-muted">Comentários recebidos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="mt-4">
+            <h3>Gráfico de Crescimento</h3>
+            <div class="chart-container">
+                <canvas id="growthChart"></canvas>
+            </div>
+        </section>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
