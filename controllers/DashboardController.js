@@ -52,9 +52,11 @@ module.exports = class DashboardController {
 
     static async showPosts(req, res) {
         const user = await User.findByPk(req.session.userId);
+        const nameParts = user.name.split(' ');
+        const firstName = nameParts[0];
         try {
             res.render('dashboard/feed', {
-                layout: "dashboard", user: user.toJSON(),
+                layout: "dashboard", user: user.toJSON(), firstName
             });
         } catch (err) {
             console.log('Erro ao renderizar o posts');
@@ -63,9 +65,11 @@ module.exports = class DashboardController {
 
     static async showForum(req, res) {
         const user = await User.findByPk(req.session.userId);
+        const nameParts = user.name.split(' ');
+        const firstName = nameParts[0];
         try {
             res.render('dashboard/forum', {
-                layout: "dashboard", user: user.toJSON()
+                layout: "dashboard", user: user.toJSON(), firstName
             });
         } catch (err) {
             console.log('Erro ao renderizar o fórum');
@@ -74,9 +78,11 @@ module.exports = class DashboardController {
 
     static async showReport(req, res) {
         const user = await User.findByPk(req.session.userId);
+        const nameParts = user.name.split(' ');
+        const firstName = nameParts[0];
         try {
             res.render('dashboard/report', {
-                layout: "dashboard", user: user.toJSON()
+                layout: "dashboard", user: user.toJSON(), firstName
             });
         } catch (err) {
             console.log('Erro ao renderizar o report');
@@ -85,9 +91,11 @@ module.exports = class DashboardController {
 
     static async showConfig(req, res) {
         const user = await User.findByPk(req.session.userId);
+        const nameParts = user.name.split(' ');
+        const firstName = nameParts[0];
         try {
             res.render('dashboard/config', {
-                layout: "dashboard", user: user.toJSON()
+                layout: "dashboard", user: user.toJSON(), firstName
             });
         } catch (err) {
             console.log('Erro ao renderizar o config');
