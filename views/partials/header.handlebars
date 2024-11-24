@@ -22,16 +22,17 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/contact">Contato</a>
                 </li>
-                <li class="nav-item">
-                    <a class="btn btn-outline-light rounded-pill px-4 ms-4 mb-3 mt-3 mt-lg-0 mb-lg-0" href="/login" role="button">Login</a>
-                </li>
-                <li class="nav-item ms-2">
-                    <a class="btn btn-primary rounded-pill px-4 mb-2 mb-lg-0" href="/register" role="button">Cadastrar-se</a>
-                </li>
+
+                {{#if isAuthenticated}}
+                    <a href="/dashboard" class="btn btn-outline-light rounded-pill px-4 ms-4 mb-3 mt-3 mt-lg-0 mb-lg-0">Dashboard</a>
+                    <a href="/logout" class="btn btn-outline-light rounded-pill px-4 ms-3 mb-2 mb-lg-0">Sair</a>
+                {{else}}
+                    <a href="/login" class="btn btn-outline-light rounded-pill px-4 ms-4 mb-3 mt-3 mt-lg-0 mb-lg-0">Login</a>
+                    <a href="/register" class="btn btn-primary rounded-pill px-4 ms-3 mb-2 mb-lg-0">Cadastrar-se</a>
+                {{/if}}
             </ul>
         </div>
     </div>
 </nav>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -14,13 +14,12 @@
     {{> header}}
     {{/if}}
 
-     {{#if successRegister}}
-        <div class="alert alert-success mt-4 alert-dismissible fade show m-4" role="alert">
-            Cadastro realizado com sucesso!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    {{#if successRegister}}
+    <div class="alert alert-success mt-4 alert-dismissible fade show m-4" role="alert">
+        Cadastro realizado com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     {{/if}}
-
 
     {{{body}}}
 

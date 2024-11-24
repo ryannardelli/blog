@@ -15,14 +15,19 @@ app.use(session({
   secret: 'key secret',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 60000 } // Sessão expira após 1 minuto (ajuste conforme necessário)
+  cookie: { maxAge: 3600000 } // Sessão expira após 1 hora (3600000 ms)
 }));
+
+// app.use((req, res, next) => {
+//   res.locals.isAuthenticated = req.session && req.session.login; // Define se o usuário está logado
+//   next();
+// });
 
 app.use(
     express.urlencoded({
       extended: true,
     })
-  );
+);
   
 
 app.engine(
@@ -43,6 +48,7 @@ app.use("/", homeRouter);
 app.use("/about", aboutRouter);
 app.use("/contact", contactRouter);
 app.use("/login", logintRouter);
+app.use("/", logintRouter);
 app.use("/register", registerRouter);
 
 app.use("/dashboard", dashboardRouter);

@@ -32,4 +32,17 @@ module.exports = class ContactController {
             return res.status(500).send('Erro interno do servidor.');
         }
     }
+    static logout(req, res) {
+        console.log('Sessão atual:', req.session);
+        req.session.destroy((err) => {
+            if (err) {
+                console.error('Erro ao destruir a sessão:', err);
+                return res.status(500).send('Erro ao encerrar a sessão.');
+            }
+            console.log('Sessão destruída com sucesso');
+            res.clearCookie('connect.sid');
+            return res.redirect('/');
+        });
+    }
+    
 }
