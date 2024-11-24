@@ -2,15 +2,15 @@
 <nav id="sidebar">
     <div id="sidebar_content">
         <div id="user">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjzY3fGE9ln4iDhU29e7kDcBv10OQqCxmSg&s"
+            <img src="{{user.profile_picture}}"
                 id="user_avatar" alt="Avatar">
 
             <p id="user_infos">
                 <span class="item-description">
-                    Fulano de Tal
+                    {{user.name}}
                 </span>
                 <span class="item-description">
-                    Lorem Ipsum
+                    Bem-vindo, {{user.name}}.
                 </span>
             </p>
         </div>

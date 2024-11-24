@@ -1,14 +1,26 @@
 const User = require('../models/User');
 const moment = require('moment');
+
 module.exports = class DashboardController {
 
-    static  showDashboardMain(req, res) {
+    static async showDashboardMain(req, res) {
         try {
+            const user = await User.findByPk(req.session.userId);
+
+            if (!user) {
+                return res.status(404).send('Usuário não encontrado.');
+            }
+
+            const nameParts = user.name.split(' ');
+            const firstName = nameParts[0];
+
             res.render('dashboard/dashboard', {
                 layout: "dashboard",
+                user: user.toJSON(),
+                firstName,
             });
-        } catch(err) {
-            console.log('Erro ao renderizar o dashboard');
+        } catch (err) {
+            console.log('Erro ao renderizar o dashboard', err);
         }
     }
 
@@ -27,49 +39,57 @@ module.exports = class DashboardController {
 
         try {
             res.render('dashboard/profile', {
-                layout: "dashboard", user: user.toJSON(), firstName, lastName, formattedDate
+                layout: "dashboard",
+                user: user.toJSON(),
+                firstName,
+                lastName,
+                formattedDate
             });
-        } catch(err) {
-            console.log('Erro ao renderizar o profile');
+        } catch (err) {
+            console.log('Erro ao renderizar o profile', err);
         }
     }
 
-    static showPosts(req, res) {
+    static async showPosts(req, res) {
+        const user = await User.findByPk(req.session.userId);
         try {
             res.render('dashboard/feed', {
-                layout: "dashboard"
+                layout: "dashboard", user: user.toJSON(),
             });
-        } catch(err) {
+        } catch (err) {
             console.log('Erro ao renderizar o posts');
         }
     }
 
-    static showForum(req, res) {
+    static async showForum(req, res) {
+        const user = await User.findByPk(req.session.userId);
         try {
             res.render('dashboard/forum', {
-                layout: "dashboard"
+                layout: "dashboard", user: user.toJSON()
             });
-        } catch(err) {
+        } catch (err) {
             console.log('Erro ao renderizar o fórum');
         }
     }
 
-    static showReport(req, res) {
+    static async showReport(req, res) {
+        const user = await User.findByPk(req.session.userId);
         try {
             res.render('dashboard/report', {
-                layout: "dashboard"
+                layout: "dashboard", user: user.toJSON()
             });
-        } catch(err) {
+        } catch (err) {
             console.log('Erro ao renderizar o report');
         }
     }
 
-    static showConfig(req, res) {
+    static async showConfig(req, res) {
+        const user = await User.findByPk(req.session.userId);
         try {
             res.render('dashboard/config', {
-                layout: "dashboard"
+                layout: "dashboard", user: user.toJSON()
             });
-        } catch(err) {
+        } catch (err) {
             console.log('Erro ao renderizar o config');
         }
     }
