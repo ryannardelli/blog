@@ -1,6 +1,8 @@
+const User = require('../models/User');
+const moment = require('moment');
 module.exports = class DashboardController {
 
-    static showDashboardMain(req, res) {
+    static  showDashboardMain(req, res) {
         try {
             res.render('dashboard/dashboard', {
                 layout: "dashboard",
@@ -10,10 +12,22 @@ module.exports = class DashboardController {
         }
     }
 
-    static showProfile(req, res) {
+    static async showProfile(req, res) {
+        const user = await User.findByPk(req.session.userId);
+
+        if (!user) {
+            return res.status(404).send('Usuário não encontrado.');
+        }
+
+        const nameParts = user.name.split(' ');
+        const firstName = nameParts[0];
+        const lastName = nameParts[nameParts.length - 1];
+
+        const formattedDate = moment(user.updatedAt).format('DD [de] MMMM [de] YYYY');
+
         try {
             res.render('dashboard/profile', {
-                layout: "dashboard"
+                layout: "dashboard", user: user.toJSON(), firstName, lastName, formattedDate
             });
         } catch(err) {
             console.log('Erro ao renderizar o profile');

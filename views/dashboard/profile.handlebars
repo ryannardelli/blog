@@ -9,22 +9,22 @@
                 <div class="text-center">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjzY3fGE9ln4iDhU29e7kDcBv10OQqCxmSg&s"
                         alt="Foto de perfil" class="img-fluid">
-                    <h3>João Silva</h3>
+                    <h3>{{firstName}} {{lastName}}</h3>
                     <p class="text-muted">Desenvolvedor Web</p>
                 </div>
 
                 <div class="list-group mt-4">
                     <div class="list-group-item">
-                        <strong>Nome:</strong> João Silva
+                        <strong>Nome:</strong> {{user.name}}
                     </div>
                     <div class="list-group-item">
-                        <strong>Função:</strong> Programador
+                        <strong>Função:</strong> {{user.function}}
                     </div>
                      <div class="list-group-item">
-                        <strong>Email:</strong> joao.silva@exemplo.com
+                        <strong>Email:</strong> {{user.email}}
                     </div>
                     <div class="list-group-item">
-                        <strong>Última atualização:</strong> 20 de Novembro, 2024
+                        <strong>Última atualização:</strong> {{formattedDate}}
                     </div>
                 </div>
             </div>
