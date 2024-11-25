@@ -1,6 +1,5 @@
 section#posts {
     background-color: #fff;
-    padding: 30px;
     border-radius: 10px;
 }
 
@@ -87,11 +86,18 @@ section#posts {
     background-color: #1E90FF	;
 }
 
+#btn-post {
+    padding: 10px;
+    width: 100%;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
 
 /* Media Query */
-@media (max-width: 768px) {
-    .create-post-link {
-        width: 100%;
-        text-align: center;
+@media (min-width: 768px) {
+    #btn-post {
+        width: 300px;
     }
 }

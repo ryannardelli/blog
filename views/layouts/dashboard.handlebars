@@ -7,20 +7,42 @@
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
 </head>
 
 <body>
 
     {{> sidebar}}
 
-    <main>
+    <main class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <!-- Search -->
+            <div class="search">
+                <label>
+                    <input type="text" name="search" id="search" placeholder="Pesquise aqui">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+            <!-- UserImg -->
+            <div class="user">
+                <img src="{{user.profile_picture}}" alt="{{user.name}}">
+            </div>
+        </div>
         {{{body}}}
     </main>
 
     <script>
-        document.getElementById('open_btn').addEventListener('click', function () {
-            document.getElementById('sidebar').classList.toggle('open-sidebar');
+
+        // Menu toggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+        toggle.addEventListener('click', () => {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
         });
     </script>
 </body>

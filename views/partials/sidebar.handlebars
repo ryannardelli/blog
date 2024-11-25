@@ -1,9 +1,89 @@
 <link rel="stylesheet" href="/css/dashboard/sidebar.css">
-<nav id="sidebar">
+
+<body>
+    <div class="container p-0">
+        <div class="navigation">
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                        <span class="title">{{firstName}}</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/dashboard">
+                        <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                  <li>
+                    <a href="/">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/dashboard/profile">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="title">Perfil</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/dashboard/feed">
+                        <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
+                        <span class="title">Feed</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/dashboard/forum">
+                        <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                        <span class="title">Fórum</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/dashboard/config">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Configurações</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink() {
+            list.forEach((item) => {
+                item.classList.remove('hoverend');
+                this.classList.add('hovered');
+            });
+        }
+        list.forEach((item) => {
+            item.addEventListener('mouseever', activeLink);
+        })
+    </script>
+</body>
+{{!-- <nav id="sidebar">
     <div id="sidebar_content">
         <div id="user">
-            <img src="{{user.profile_picture}}"
-                id="user_avatar" alt="Avatar">
+            <img src="{{user.profile_picture}}" id="user_avatar" alt="Avatar">
 
             <p id="user_infos">
                 <span class="item-description">
@@ -84,4 +164,4 @@
             </a>
         </button>
     </div>
-</nav>
+</nav> --}}

@@ -10,7 +10,7 @@
 }
   
 input {
-    width: 600px;
+    max-width: 600px;
     border: 1px solid #ddd;
     height: 50px;
     padding: 0 20px;
@@ -36,4 +36,10 @@ button {
     margin: 20px 0;
     border: 1px solid #ddd;
     padding: 20px;
+}
+
+@media (min-width: 768px) {
+    button {
+        width: 400px;
+    }
 }
