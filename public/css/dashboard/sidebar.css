@@ -148,7 +148,7 @@ body {
 
 .main.active {
     width: calc(100% - 80px);
-    left: 80px;
+    left: 100px;
 }
 
 .topbar {
@@ -215,4 +215,178 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.cardBox .card {
+    position: relative;
+    background: var(--white);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border: none;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.cardBox .card .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: var(--blue);
+}
+
+.cardBox .card .cardName {
+    color: var(--black2);
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.cardBox .card .iconBx {
+    font-size: 3.5em;
+    color: var(--black2);
+}
+
+.cardBox .card:hover {
+    background: var(--blue);
+}
+
+.cardBox .card:hover .numbers, .cardBox .card:hover .cardName, .cardBox .card:hover .iconBx {
+    color: var(--white);
+}
+
+#recentVisit {
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    background: var(--white);
+    display: grid;
+    min-height: 500px;
+}
+
+#recentVisit .imgBx {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.cardHeader h2 {
+    color: var(--blue);
+}
+
+#recentVisit .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+#recentVisit table tr td {
+    padding: 4px 10px;
+}
+
+#recentVisit table tr td h4 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2em;
+    color: var(--black1);
+}
+
+#recentVisit table tr td span {
+    font-size: 14px;
+    color: var(--black2);
+}
+
+/* #recentVisit table tr:hover {
+    background: var(--blue);
+} */
+
+#recentVisit .card, #aboutDashboard .card {
+    border: none;
+}
+
+#aboutDashboard {
+    padding: 10px;
+}
+
+#aboutDashboard h4 {
+    color: var(--blue);
+}
+
+/* responsive */
+
+@media (max-width: 991px) {
+    .navigation {
+        left: -300px;
+    }
+
+    .navigation.active {
+        width: 300px;
+        left: 0;
+    }
+
+    .main {
+        width: 100%;
+        left: 0;
+    }
+
+    .main.active {
+        left: 300px;
+    }
+
+    .cardBox {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .cardBox {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .cardHeader h2 {
+        font-size: 20px;
+    }
+
+    .user {
+        min-width: 40px;
+    }
+
+    .navigation {
+        width: 100%;
+        left: -100%;
+        z-index: 1000;
+    }
+
+    .navigation.active {
+        width: 100%;
+        left: 0;
+    }
+
+    .toggle {
+        z-index: 10001;
+    }
+
+    .main.main.active .toggle {
+        position: fixed;
+        right: 0;
+        left: initial;
+        color: #fff;
+    }
 }
