@@ -3,6 +3,13 @@
 <link rel="stylesheet" href="/css/login.css">
 
 <body>
+    {{#if error}}
+    <div class="alert alert-danger mt-4 alert-dismissible fade show m-4" role="alert">
+        Ocorreu um erro ao tentar fazer login. Verfique seus dados e tente novamente.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}}
+
     <div class="login-container">
         <h2>Login</h2>
         <form method="post" action="/login/loginUser" class="needs-validation" novalidate autocomplete="off">
@@ -61,8 +68,8 @@
 
                 if (password.value === "") {
                     msgPassword.innerHTML = "O campo senha precisa ser preenchido."
-                } else if(!validPassword(password.value)) {
-                    msgPassword.innerHTML = "A senha deve ter no mínimo 6 caracteres, incluir pelo menos uma letra e um caractere especial."
+                } else if (!validPassword(password.value)) {
+                    msgPassword.innerHTML = "Senha: mínimo 6 caracteres, com letra e caractere especial."
                 }
 
                 // Evita o envio do formulário se houver campos inválidos
@@ -76,7 +83,7 @@
 
                 const invalidFields = form.querySelectorAll('.invalid-feedback');
 
-                 if (invalidFields.length > 0) {
+                if (invalidFields.length > 0) {
                     togglePassword.style.top = '28%';
                 }
             }, false);
