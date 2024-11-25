@@ -148,7 +148,7 @@ body {
 
 .main.active {
     width: calc(100% - 80px);
-    left: 100px;
+    left: 93px;
 }
 
 .topbar {
@@ -312,10 +312,6 @@ body {
     font-size: 14px;
     color: var(--black2);
 }
-
-/* #recentVisit table tr:hover {
-    background: var(--blue);
-} */
 
 #recentVisit .card, #aboutDashboard .card {
     border: none;
