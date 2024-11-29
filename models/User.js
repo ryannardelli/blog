@@ -39,19 +39,20 @@ const User = db.define("User", {
   profile_picture: {
     type: DataTypes.STRING,
     allowNull: true,
+    defaultValue: "https://www.gov.br/cdn/sso-status-bar/src/image/user.png",
     validate: {
       isUrl: true, // Garante que seja uma URL válida
     },
   },
 });
 
-// Hash da senha antes de criar o usuário
+
 User.beforeCreate(async (user) => {
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
 });
 
-// Hash da senha antes de atualizar o usuário
+
 User.beforeUpdate(async (user) => {
   if (user.changed("password")) {
     const salt = await bcrypt.genSalt(10);
@@ -59,7 +60,7 @@ User.beforeUpdate(async (user) => {
   }
 });
 
-// Método para autenticar usuário (validar senha)
+
 User.authenticate = async (email, password) => {
   const user = await User.findOne({ where: { email } });
   if (!user) {
@@ -71,7 +72,7 @@ User.authenticate = async (email, password) => {
     throw new Error("Senha inválida.");
   }
 
-  return user; // Retorna o usuário autenticado
+  return user;
 };
 
 module.exports = User;

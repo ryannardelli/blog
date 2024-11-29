@@ -8,7 +8,7 @@
                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-                        <span class="title">{{firstName}}</span>
+                        <span class="title">{{user.name}}</span>
                     </a>
                 </li>
 
@@ -80,88 +80,3 @@
         })
     </script>
 </body>
-{{!-- <nav id="sidebar">
-    <div id="sidebar_content">
-        <div id="user">
-            <img src="{{user.profile_picture}}" id="user_avatar" alt="Avatar">
-
-            <p id="user_infos">
-                <span class="item-description">
-                    {{firstName}}
-                </span>
-                <span class="item-description">
-                    Olá, {{firstName}}.
-                </span>
-            </p>
-        </div>
-
-        <ul id="side_items">
-            <li class="side-item active">
-                <a href="/dashboard">
-                    <i class="bi bi-graph-up"></i>
-                    <span class="item-description">
-                        Dashboard
-                    </span>
-                </a>
-            </li>
-
-            <li class="side-item">
-                <a href="/dashboard/profile">
-                    <i class="bi bi-person"></i>
-                    <span class="item-description">
-                        Perfil
-                    </span>
-                </a>
-            </li>
-
-            <li class="side-item">
-                <a href="/dashboard/feed">
-                    <i class="bi bi-postcard"></i>
-                    <span class="item-description">
-                        Feed
-                    </span>
-                </a>
-            </li>
-
-            <li class="side-item">
-                <a href="/dashboard/forum">
-                    <i class="bi bi-people"></i>
-                    <span class="item-description">
-                        Fórum
-                    </span>
-                </a>
-            </li>
-
-            <li class="side-item">
-                <a href="/dashboard/report">
-                    <i class="bi bi-file-earmark-bar-graph"></i>
-                    <span class="item-description">
-                        Relatórios
-                    </span>
-                </a>
-            </li>
-
-            <li class="side-item">
-                <a href="/dashboard/config">
-                    <i class="bi bi-gear"></i>
-                    <span class="item-description">
-                        Configurações
-                    </span>
-                </a>
-            </li>
-        </ul>
-
-        <button id="open_btn">
-            <i id="open_btn_icon" class="bi bi-chevron-right"></i>
-        </button>
-    </div>
-
-    <div id="logout">
-        <button id="logout_btn">
-            <i class="bi bi-house"></i>
-            <a href="/" class="item-description">
-                Início
-            </a>
-        </button>
-    </div>
-</nav> --}}

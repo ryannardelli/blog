@@ -18,11 +18,6 @@ app.use(session({
   cookie: { maxAge: 3600000 } // Sessão expira após 1 hora (3600000 ms)
 }));
 
-// app.use((req, res, next) => {
-//   res.locals.isAuthenticated = req.session && req.session.login; // Define se o usuário está logado
-//   next();
-// });
-
 app.use(
     express.urlencoded({
       extended: true,
@@ -57,6 +52,8 @@ app.use("/dashboard/feed", dashboardRouter);
 app.use("/dashboard/forum", dashboardRouter);
 app.use("/dashboard/report", dashboardRouter);
 app.use("/dashboard/config", dashboardRouter);
+app.use("/dashboard/createPost", dashboardRouter);
+app.use("/submitpost", dashboardRouter);
 
 conn
   .sync()

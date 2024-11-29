@@ -8,4 +8,7 @@ router.get('/feed', DashboardController.showPosts);
 router.get('/forum', DashboardController.showForum);
 router.get('/report', DashboardController.showReport);
 router.get('/config', DashboardController.showConfig);
+router.get('/createPost', DashboardController.showCreatePost);
+
+router.post('/submitPost', DashboardController.SendPost);
 module.exports = router;
