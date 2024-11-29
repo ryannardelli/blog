@@ -6,75 +6,32 @@
   <div class="container">
     <h2 class="text-center mb-4">Suas Publicações</h2>
     <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card shadow-sm border-0">
-          <img
-            src="https://services.meteored.com/img/article/inteligencia-artificial-aprende-a-reconstruir-imagens-vistas-por-pessoas-ciencia-fotos-1679175318563_1280.jpg"
-            class="card-img-top rounded-top" alt="Post 1">
-          <div class="card-body">
-            <h5 class="card-title">Título do Post 1</h5>
-            <p class="card-text text-muted">Um resumo breve do post para capturar a atenção do leitor.</p>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-              <span class="text-secondary small">Publicado em: 25/11/2024</span>
-              <div class="btn-group">
-                <button class="btn btn-primary btn-sm rounded-circle shadow-sm" title="Editar">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn btn-danger btn-sm rounded-circle shadow-sm ms-2" title="Excluir">
-                  <i class="bi bi-trash"></i>
-                </button>
+      {{#each posts}}
+        <div class="col-lg-4 col-md-6">
+          <div class="card shadow-sm border-0">
+            <img src="{{this.post_picture}}" class="card-img-top rounded-top" alt="Post">
+            <div class="card-body">
+              <h5 class="card-title">{{this.title}}</h5>
+              <p class="card-text text-muted">{{this.summary}}</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="text-secondary small">Publicado em: {{this.createdAt}}</span>
+                <div class="btn-group">
+                  <button class="btn btn-primary btn-sm rounded-circle shadow-sm" title="Editar">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-danger btn-sm rounded-circle shadow-sm ms-2" title="Excluir">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card shadow-sm border-0">
-          <img
-            src="https://s2-techtudo.glbimg.com/YV466w-hUwF_dTQIHPj_sbg9pW4=/0x0:1536x864/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2024/P/F/9THicRSG2c2VTkIKVkAw/imagine.art-ai-2.png"
-            class="card-img-top rounded-top" alt="Post 2">
-          <div class="card-body">
-            <h5 class="card-title">Título do Post 2</h5>
-            <p class="card-text text-muted">Outro resumo para atrair leitores ao conteúdo.</p>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-              <span class="text-secondary small">Publicado em: 24/11/2024</span>
-              <div class="btn-group">
-                <button class="btn btn-primary btn-sm rounded-circle shadow-sm" title="Editar">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn btn-danger btn-sm rounded-circle shadow-sm ms-2" title="Excluir">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card shadow-sm border-0">
-          <img
-            src="https://next-images.123rf.com/index/_next/image/?url=https://assets-cdn.123rf.com/index/static/assets/top-section-bg.jpeg&w=3840&q=75"
-            class="card-img-top rounded-top" alt="Post 3">
-          <div class="card-body">
-            <h5 class="card-title">Título do Post 3</h5>
-            <p class="card-text text-muted">Mais um resumo interessante para despertar curiosidade.</p>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-              <span class="text-secondary small">Publicado em: 23/11/2024</span>
-              <div class="btn-group">
-                <button class="btn btn-primary btn-sm rounded-circle shadow-sm" title="Editar">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn btn-danger btn-sm rounded-circle shadow-sm ms-2" title="Excluir">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {{/each}}
     </div>
     <div class="text-center mt-4">
       <a href="/dashboard/createPost" class="btn btn-outline-success shadow-sm mb-4" id="btn-post">Criar publicação</a>
     </div>
   </div>
 </section>
+

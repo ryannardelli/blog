@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 
 const moment = require("moment");
+const { post } = require("../routes/homeRouter");
 
 module.exports = class DashboardController {
   static async showDashboardMain(req, res) {
@@ -121,8 +122,7 @@ module.exports = class DashboardController {
         return res.status(404).send("Usuário não encontrado.");
       }
 
-      res.render("dashboard/createPost", { user: user.get() },
-      );
+      res.render("dashboard/createPost", { user: user.get() });
     } catch (e) {
       console.log("Erro ao criar página de criação de post", e);
     }
@@ -134,7 +134,9 @@ module.exports = class DashboardController {
     console.log(req.body);
 
     if (!userId) {
-        return res.status(400).send("userId não encontrado no corpo da requisição.");
+      return res
+        .status(400)
+        .send("userId não encontrado no corpo da requisição.");
     }
 
     try {
@@ -152,4 +154,28 @@ module.exports = class DashboardController {
       res.status(500).send("Erro ao processar a requisição.");
     }
   }
+
+  static async showPosts(req, res) {
+    try {
+      const user = await User.findByPk(req.session.userId);
+  
+      const posts = await Post.findAll({
+        where: {
+          userId: user.id, 
+        },
+      });
+      
+  
+      const postsPlain = posts.map((post) => post.get());
+  
+      res.render("dashboard/feed", {
+        layout: "dashboard",
+        posts: postsPlain,
+      });
+    } catch (e) {
+      console.log("Erro ao carregar os posts", e);
+      res.status(500).send("Erro ao carregar os posts.");
+    }
+  }
+  
 };
