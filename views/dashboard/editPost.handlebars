@@ -6,7 +6,7 @@
         <div>
             <div>
                 <form action="/dashboard/editPost/{{post.id}}" method="POST">
-                    <input type="text" name="userId" value="{{post.id}}">
+                    <input type="hidden" name="userId" value="{{post.id}}">
                     <!-- Título -->
                     <div class="mb-4">
                         <label for="title" class="form-label">Título</label>
@@ -27,21 +27,6 @@
                         <textarea id="content" name="content" rows="6" class="form-control"
                                   placeholder="Digite o conteúdo do post" required>{{post.content}}</textarea>
                     </div>
-
-                    <!-- Categoria -->
-                    {{!-- <div class="mb-4">
-                        <label for="category" class="form-label">Categoria do Post</label>
-                        <select id="category" name="category" class="form-select" required>
-                            <option value="" disabled selected>Selecione uma categoria</option>
-                            <option value="tecnologia" {{#ifCond post.category "===" "tecnologia"}}selected{{/ifCond}}>Tecnologia</option>
-                            <option value="educacao" {{#ifCond post.category "===" "educacao"}}selected{{/ifCond}}>Educação</option>
-                            <option value="saude" {{#ifCond post.category "===" "saude"}}selected{{/ifCond}}>Saúde</option>
-                            <option value="esportes" {{#ifCond post.category "===" "esportes"}}selected{{/ifCond}}>Esportes</option>
-                            <option value="entretenimento" {{#ifCond post.category "===" "entretenimento"}}selected{{/ifCond}}>Entretenimento</option>
-                            <option value="negocios" {{#ifCond post.category "===" "negocios"}}selected{{/ifCond}}>Negócios</option>
-                            <option value="outros" {{#ifCond post.category "===" "outros"}}selected{{/ifCond}}>Outros</option>
-                        </select>
-                    </div> --}}
 
                     <!-- Botões -->
                     <div class="text-center">

@@ -9,9 +9,11 @@ router.get('/forum', DashboardController.showForum);
 router.get('/report', DashboardController.showReport);
 router.get('/config', DashboardController.showConfig);
 router.get('/createPost', DashboardController.showCreatePost);
-router.get('/editPost', DashboardController.showEditPost);
+
+router.get('/editPost/:id', DashboardController.showEditPost);
 
 router.post('/submitPost', DashboardController.SendPost);
 router.post('/deletePost/:id', DashboardController.deletePost);
-router.get('/editPost/:id', DashboardController.editPost);
+router.post('/editPost/:id', DashboardController.editPost);
+
 module.exports = router;

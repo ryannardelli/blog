@@ -199,37 +199,50 @@ module.exports = class DashboardController {
 
   static async showEditPost(req, res) {
     try {
+        const postId = req.params.id;
+        const post = await Post.findByPk(postId);
+
+        if (!post) {
+            return res.status(404).send("Post não encontrado");
+        }
+
+        const user = await User.findOne({
+            include: { model: Post, attributes: ['id', 'title', 'summary', 'content'] },
+            where: { id: post.userId },
+        });
+
+        if (!user) {
+            return res.status(404).send("Usuário não encontrado");
+        }
+
+        const plainPost = post.get({ plain: true });
+        const plainUser = user.get({ plain: true });
+
+        res.render("dashboard/editPost", { post: plainPost, user: plainUser });
+    } catch (err) {
+        console.log("Erro ao renderizar o editPost", err);
+        res.status(500).send("Erro ao carregar o formulário de edição");
+    }
+}
+
+  static async editPost(req, res) {
+    try {
       const postId = req.params.id;
+  
+      const { title, summary, content } = req.body;
+  
       const post = await Post.findByPk(postId);
   
       if (!post) {
         return res.status(404).send("Post não encontrado");
       }
   
-      const user = await User.findOne({ include: Post, where: { id: post.userId } });
-
-      console.log(user);
+      await post.update({ title, summary, content });
   
-      if (!user) {
-        return res.status(404).send("Usuário não encontrado");
-      }
-  
-      res.render("dashboard/editPost", { user: user.get({ plain: true }) });
-  
-    } catch (err) {
-      console.log("Erro ao renderizar o editPost", err); // Logar o erro caso ocorra
-      res.status(500).send("Erro ao carregar o formulário de edição");
-    }
-  }
-  
-
-  static async editPost(req, res) {
-    try {
-      const id = req.params.id;
-      const user = await User.findOne({raw: true, where: {id: id}});
-      res.render("dashboard/editPost");
-    } catch(e) {
-      console.log('Erro ao editar o post', e);
+      res.redirect("/dashboard/feed");
+    } catch (e) {
+      console.error("Erro ao editar o post", e);
+      res.status(500).send("Erro ao editar o post");
     }
   }
 

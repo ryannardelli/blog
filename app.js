@@ -64,7 +64,6 @@ app.use("/submitpost", dashboardRouter);
 
 app.use("/deletePost:id", dashboardRouter);
 app.use("/editPost:id", dashboardRouter);
-app.post("/editPost", dashboardRouter);
 
 conn
   .sync()
