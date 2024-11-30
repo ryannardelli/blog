@@ -23,7 +23,12 @@ app.use(
       extended: true,
     })
 );
-  
+
+// importar modulo fileupload
+const fileupload = require('express-fileupload');
+
+// habilitando fileupload
+app.use(fileupload());
 
 app.engine(
   "handlebars",
@@ -34,6 +39,7 @@ app.engine(
 );
 
 app.set("views", path.join(__dirname, "views"));
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 app.set("view engine", "handlebars");
 
 app.use(express.json());

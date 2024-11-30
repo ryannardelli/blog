@@ -1,8 +1,8 @@
 const User = require("../models/User");
 const Post = require("../models/Post");
+const path = require("path");
 
 const moment = require("moment");
-const { post } = require("../routes/homeRouter");
 
 module.exports = class DashboardController {
   static async showDashboardMain(req, res) {
@@ -129,45 +129,107 @@ module.exports = class DashboardController {
   }
 
   static async SendPost(req, res) {
-    const { title, summary, content, category, userId } = req.body;
-
-    console.log(req.body);
-
-    if (!userId) {
-      return res
-        .status(400)
-        .send("userId não encontrado no corpo da requisição.");
-    }
-
     try {
-      await Post.create({
-        title,
-        summary,
-        content,
-        category,
-        userId,
-      });
-
-      res.redirect("/dashboard/feed");
+      const { userId, title, summary, content, category } = req.body;
+      
+      // Verificar se foi feito o upload de uma imagem
+      if (req.files && req.files.image) {
+        const image = req.files.image;
+  
+        // Gerar o caminho do arquivo
+        const uploadPath = path.join(__dirname, "../public/images", image.name);
+  
+        // Mover o arquivo para o diretório de uploads
+        image.mv(uploadPath, async (err) => {
+          if (err) {
+            return res.status(500).send("Erro ao fazer upload da imagem.");
+          }
+  
+          // Salvar o caminho da imagem no banco de dados
+          const post = await Post.create({
+            userId,
+            title,
+            summary,
+            content,
+            category,
+            post_picture: `/images/${image.name}`, // Caminho relativo para o frontend
+          });
+  
+          res.redirect("/dashboard/feed"); // Redireciona para a página de feed de posts
+        });
+      } else {
+        // Caso não haja imagem, salve com um valor default ou sem imagem
+        const post = await Post.create({
+          userId,
+          title,
+          summary,
+          content,
+          category,
+          post_picture: "/images/default.jpg", // Imagem padrão caso não haja upload
+        });
+  
+        res.redirect("/dashboard/feed");
+      }
     } catch (error) {
       console.error("Erro ao criar post:", error);
-      res.status(500).send("Erro ao processar a requisição.");
+      res.status(500).send("Erro ao criar o post");
     }
+    // const { title, summary, content, category, userId, image } = req.body;
+
+    // if (!req.files || !req.files.image) {
+    //   return res.status(400).send("Nenhuma imagem foi enviada.");
+    // }
+
+    // const imageFile = req.files.image;
+
+    // const uploadPath = path.join(
+    //   __dirname,
+    //   "../public/uploads/",
+    //   Date.now() + path.extname(imageFile.name)
+    // );
+
+    // const post_picture = `/uploads/${path.basename(uploadPath)}`;
+
+    // if (!userId) {
+    //   return res
+    //     .status(400)
+    //     .send("userId não encontrado no corpo da requisição.");
+    // }
+
+    // console.log(req.body);
+
+    // try {
+    //   await Post.create({
+    //     title,
+    //     summary,
+    //     content,
+    //     category,
+    //     userId,
+    //     image,
+    //     post_picture
+    //   });
+
+    //   console.log(req.body);
+
+    //   res.redirect("/dashboard/feed");
+    // } catch (error) {
+    //   console.error("Erro ao criar post:", error);
+    //   res.status(500).send("Erro ao processar a requisição.");
+    // }
   }
 
   static async showPosts(req, res) {
     try {
       const user = await User.findByPk(req.session.userId);
-  
+
       const posts = await Post.findAll({
         where: {
-          userId: user.id, 
+          userId: user.id,
         },
       });
-      
-  
+
       const postsPlain = posts.map((post) => post.get());
-  
+
       res.render("dashboard/feed", {
         layout: "dashboard",
         posts: postsPlain,
@@ -177,5 +239,4 @@ module.exports = class DashboardController {
       res.status(500).send("Erro ao carregar os posts.");
     }
   }
-  
 };
