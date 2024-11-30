@@ -184,18 +184,36 @@ form input[type="file"] {
     padding: 8px;
 }
 
-.btn-group button {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    margin: 0;
-  }
-
-  .btn-group {
+.btn-group {
     display: flex;
     gap: 10px;
-  }
+}
 
+.bi {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+#link {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: #007bff;
+    border: none;
+}
+
+#link:hover i {
+    color: black;
+}
+
+#container-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .text-danger {
     font-weight: bold;
