@@ -197,6 +197,42 @@ module.exports = class DashboardController {
     }
   }
 
+  static async showEditPost(req, res) {
+    try {
+      const postId = req.params.id;
+      const post = await Post.findByPk(postId);
+  
+      if (!post) {
+        return res.status(404).send("Post não encontrado");
+      }
+  
+      const user = await User.findOne({ include: Post, where: { id: post.userId } });
+
+      console.log(user);
+  
+      if (!user) {
+        return res.status(404).send("Usuário não encontrado");
+      }
+  
+      res.render("dashboard/editPost", { user: user.get({ plain: true }) });
+  
+    } catch (err) {
+      console.log("Erro ao renderizar o editPost", err); // Logar o erro caso ocorra
+      res.status(500).send("Erro ao carregar o formulário de edição");
+    }
+  }
+  
+
+  static async editPost(req, res) {
+    try {
+      const id = req.params.id;
+      const user = await User.findOne({raw: true, where: {id: id}});
+      res.render("dashboard/editPost");
+    } catch(e) {
+      console.log('Erro ao editar o post', e);
+    }
+  }
+
   static async deletePost(req, res) {
     const id = req.params.id;
     await Post.destroy({ where: { id: id } });

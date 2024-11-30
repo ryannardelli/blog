@@ -16,9 +16,13 @@
               <div class="d-flex justify-content-between align-items-center mt-3">
                 <span class="text-secondary small">Publicado em: {{this.createdAt}}</span>
                 <div class="btn-group">
-                  <button class="btn btn-primary btn-sm rounded-circle shadow-sm" title="Editar">
-                    <i class="bi bi-pencil"></i>
-                  </button>
+
+                  <form action="/dashboard/editPost/{{this.id}}" method="post">
+                    <a href="/dashboard/editPost/{{this.id}}" class="btn btn-warning btn-sm rounded-circle shadow-sm ms-2" title="Excluir">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                  </form>
+
                   <form action="/dashboard/deletePost/{{this.id}}" method="post">
                     <button class="btn btn-danger btn-sm rounded-circle shadow-sm ms-2" title="Excluir">
                       <i class="bi bi-trash"></i>

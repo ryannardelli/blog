@@ -41,5 +41,4 @@ const Post = db.define('Post', {
 Post.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 User.hasMany(Post, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
-
 module.exports = Post;

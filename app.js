@@ -58,9 +58,13 @@ app.use("/dashboard/feed", dashboardRouter);
 app.use("/dashboard/forum", dashboardRouter);
 app.use("/dashboard/report", dashboardRouter);
 app.use("/dashboard/config", dashboardRouter);
+
 app.use("/dashboard/createPost", dashboardRouter);
 app.use("/submitpost", dashboardRouter);
+
 app.use("/deletePost:id", dashboardRouter);
+app.use("/editPost:id", dashboardRouter);
+app.post("/editPost", dashboardRouter);
 
 conn
   .sync()
