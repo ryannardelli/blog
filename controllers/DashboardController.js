@@ -132,7 +132,6 @@ module.exports = class DashboardController {
     try {
       const { userId, title, summary, content, category } = req.body;
       
-      // Verificar se foi feito o upload de uma imagem
       if (req.files && req.files.image) {
         const image = req.files.image;
   
@@ -155,10 +154,9 @@ module.exports = class DashboardController {
             post_picture: `/images/${image.name}`, // Caminho relativo para o frontend
           });
   
-          res.redirect("/dashboard/feed"); // Redireciona para a página de feed de posts
+          res.redirect("/dashboard/feed");
         });
       } else {
-        // Caso não haja imagem, salve com um valor default ou sem imagem
         const post = await Post.create({
           userId,
           title,
@@ -174,48 +172,6 @@ module.exports = class DashboardController {
       console.error("Erro ao criar post:", error);
       res.status(500).send("Erro ao criar o post");
     }
-    // const { title, summary, content, category, userId, image } = req.body;
-
-    // if (!req.files || !req.files.image) {
-    //   return res.status(400).send("Nenhuma imagem foi enviada.");
-    // }
-
-    // const imageFile = req.files.image;
-
-    // const uploadPath = path.join(
-    //   __dirname,
-    //   "../public/uploads/",
-    //   Date.now() + path.extname(imageFile.name)
-    // );
-
-    // const post_picture = `/uploads/${path.basename(uploadPath)}`;
-
-    // if (!userId) {
-    //   return res
-    //     .status(400)
-    //     .send("userId não encontrado no corpo da requisição.");
-    // }
-
-    // console.log(req.body);
-
-    // try {
-    //   await Post.create({
-    //     title,
-    //     summary,
-    //     content,
-    //     category,
-    //     userId,
-    //     image,
-    //     post_picture
-    //   });
-
-    //   console.log(req.body);
-
-    //   res.redirect("/dashboard/feed");
-    // } catch (error) {
-    //   console.error("Erro ao criar post:", error);
-    //   res.status(500).send("Erro ao processar a requisição.");
-    // }
   }
 
   static async showPosts(req, res) {
@@ -238,5 +194,11 @@ module.exports = class DashboardController {
       console.log("Erro ao carregar os posts", e);
       res.status(500).send("Erro ao carregar os posts.");
     }
+  }
+
+  static async deletePost(req, res) {
+    const id = req.params.id;
+    await Post.destroy({ where: { id: id } });
+    res.redirect("/dashboard/feed");
   }
 };

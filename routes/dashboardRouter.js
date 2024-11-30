@@ -11,4 +11,5 @@ router.get('/config', DashboardController.showConfig);
 router.get('/createPost', DashboardController.showCreatePost);
 
 router.post('/submitPost', DashboardController.SendPost);
+router.post('/deletePost/:id', DashboardController.deletePost);
 module.exports = router;
