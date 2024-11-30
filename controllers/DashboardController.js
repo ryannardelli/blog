@@ -189,6 +189,7 @@ module.exports = class DashboardController {
       res.render("dashboard/feed", {
         layout: "dashboard",
         posts: postsPlain,
+        user: user.toJSON()
       });
     } catch (e) {
       console.log("Erro ao carregar os posts", e);
