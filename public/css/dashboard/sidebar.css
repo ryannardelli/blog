@@ -18,7 +18,6 @@
 body {
     min-height: 100vh;
     overflow-x: hidden;
-    /* background: linear-gradient(to right, #e0f7fa, #4e73df); */
 }
 
 .container {
