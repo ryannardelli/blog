@@ -280,4 +280,33 @@ module.exports = class DashboardController {
       res.status(500).send("Erro ao carregar o view post");
   }
   }
+
+  static async showPostViewPerHome(req, res) {
+    try {
+      const postId = req.params.id;
+      const post = await Post.findByPk(postId);
+
+      if (!post) {
+          return res.status(404).send("Post não encontrado");
+      }
+
+      const user = await User.findOne({
+          include: { model: Post, attributes: ['id', 'title', 'summary', 'content'] },
+          where: { id: post.userId },
+      });
+
+      const plainPost = post.get({ plain: true });
+      const plainUser = user.get({ plain: true });
+      
+      if (!user) {
+          return res.status(404).send("Usuário não encontrado");
+      }
+
+
+      res.render("dashboard/postViewHome", { post: plainPost, user: plainUser });
+  } catch (err) {
+      console.log("Erro ao renderizar o viewPost", err);
+      res.status(500).send("Erro ao carregar o view post");
+  }
+  }
 };
