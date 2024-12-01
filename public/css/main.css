@@ -142,6 +142,11 @@
     text-transform: uppercase;
 }
 
+.container-fluid.px-0 .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 @media (max-width: 480px) {
     #content {
         text-align: center;
@@ -156,15 +161,5 @@
 
     #read-post {
         width: 100%;
-    }
-
-    #category-posts img {
-        border-radius: 10px;
-    }
-}
-
-@media (max-width: 991px) {
-    #category-posts img {
-        border-radius: 10px;
     }
 }

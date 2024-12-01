@@ -3,14 +3,16 @@
 <link rel="stylesheet" href="/css/main.css">
 <script src="/js/dashboard.js" defer></script>
 
-<section>
-    <div class="container-fluid">
-        <div class="row" id="featured-post">
-            <div class="col-12 col-md-12 col-lg-6 order-2 order-md-2 order-lg-1 mt-4 mt-md-0" id="content">
-                <h1>{{featuredPost.title}}</h1>
-                <p>{{featuredPost.summary}}</p>
+<main>
+    <!-- Seção de destaque -->
+    <section>
+        <div class="container-fluid px-0">
+            <div class="row align-items-center" id="featured-post">
+                <!-- Conteúdo do post -->
+                <div class="col-12 col-lg-6 order-2 order-lg-1 mt-4 mt-lg-0" id="content">
+                    <h1>{{featuredPost.title}}</h1>
+                    <p>{{featuredPost.summary}}</p>
 
-                <div class="col-12">
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-6" id="author-post">
                             <p><strong>Autor: {{UserName}}</strong></p>
@@ -19,76 +21,82 @@
                             <p><strong>Data:</strong> {{formattedDate}}</p>
                         </div>
                     </div>
+
+                    <a href="/dashboard/postViewHome/{{featuredPost.id}}" class="btn btn-primary mt-4" id="read-post">
+                        LEIA AGORA
+                    </a>
                 </div>
 
-                <div class="col-12">
-                    <a href="/dashboard/postViewHome/{{featuredPost.id}}" class="btn btn-primary mt-4 mt-md-0"
-                        id="read-post">LEIA AGORA</a>
+                <!-- Imagem do post -->
+                <div class="col-12 col-lg-6 order-1 order-lg-2 text-center">
+                    <img src="{{featuredPost.post_picture}}" alt="{{featuredPost.title}}" class="img-fluid">
                 </div>
-            </div>
-
-            <div class="col-12 col-md-12 col-lg-6 order-1 order-md-1 order-lg-2">
-                <img src="{{featuredPost.post_picture}}" alt="{{featuredPost.title}}" class="img-fluid">
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="posts" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Postagens Recente</h2>
-        <div class="row g-4">
-            {{#each posts}}
-            <div class="col-lg-4 col-md-12">
-                <div class="card shadow-sm">
-                    <img src="{{this.post_picture}}" class="card-img-top" alt="{{this.title}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{this.title}}</h5>
-                        <p class="card-text">{{this.summary}}</p>
-                        <a href="/dashboard/postViewHome/{{this.id}}" class="btn btn-outline-primary">Leia Mais</a>
+    <!-- Seção de postagens recentes -->
+    <section id="posts" class="mt-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Postagens Recentes</h2>
+            <div class="row g-4">
+                {{#each posts}}
+                <div class="col-12 col-lg-4 col-md-12">
+                    <div class="card shadow-sm h-100">
+                        <img src="{{this.post_picture}}" class="card-img-top img-fluid" alt="{{this.title}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.title}}</h5>
+                            <p class="card-text">{{this.summary}}</p>
+                            <a href="/dashboard/postViewHome/{{this.id}}" class="btn btn-outline-primary">
+                                Leia Mais
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de categorias -->
+    <section id="category-posts" class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="text-end p-4">Categoria</h4>
+                </div>
+                <div class="row gx-4">
+                    <div class="col-6 col-lg-3 mb-4">
+                        <a href="#">
+                            <img src="https://idocode.com.br/wp-content/uploads/2021/05/Tecnologia-da-Informacao-1.jpg"
+                                alt="Tech" class="img-fluid rounded">
+                        </a>
+                        <p class="text-center mt-3">Tecnologia</p>
+                    </div>
+                    <div class="col-6 col-lg-3 mb-4">
+                        <a href="#">
+                            <img src="https://blog.porte.com.br/wp-content/uploads/2023/05/1617841867830-tipo-de-educacao.jpeg"
+                                alt="Educação" class="img-fluid rounded">
+                        </a>
+                        <p class="text-center mt-3">Educação</p>
+                    </div>
+                    <div class="col-6 col-lg-3 mb-4">
+                        <a href="#">
+                            <img src="https://d30903flf7mc19.cloudfront.net/wp-content/uploads/2022/09/23111209/discussao-politica-trabalho.webp"
+                                alt="Política" class="img-fluid rounded">
+                        </a>
+                        <p class="text-center mt-3">Política</p>
+                    </div>
+                    <div class="col-6 col-lg-3 mb-4">
+                        <a href="#">
+                            <img src="https://cdn.oantagonista.com/uploads/2024/04/7b3c5bb401da576bd640addf39e16073920e351e.jpg"
+                                alt="Saúde" class="img-fluid rounded">
+                        </a>
+                        <p class="text-center mt-3">Saúde</p>
                     </div>
                 </div>
             </div>
-            {{/each}}
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
-<!--  CATEGORY -->
-<section id="category-posts">
-    <div class="container mb-4">
-        <div class="col-12">
-            <h4 class="text-end p-4">Categoria</h4>
-        </div>
-        <div class="row gx-5">
-            <div class="col-12 col-md-12 col-lg-3 mb-4">
-                <a href="#">
-                    <img src="https://idocode.com.br/wp-content/uploads/2021/05/Tecnologia-da-Informacao-1.jpg"
-                        alt="Tech" class="img-fluid">
-                </a>
-                <p class="text-center mt-4">Tecnologia</p>
-            </div>
-            <div class="col-12 col-md-12 col-lg-3 mb-4">
-                <a href="#">
-                    <img src="https://blog.porte.com.br/wp-content/uploads/2023/05/1617841867830-tipo-de-educacao.jpeg"
-                        alt="Tech" class="img-fluid">
-                </a>
-                <p class="text-center mt-4">Educação</p>
-            </div>
-            <div class="col-12 col-md-12 col-lg-3 mb-4">
-                <a href="#">
-                    <img src="https://d30903flf7mc19.cloudfront.net/wp-content/uploads/2022/09/23111209/discussao-politica-trabalho.webp"
-                        alt="Tech" class="img-fluid">
-                </a>
-                <p class="text-center mt-4">Política</p>
-            </div>
-            <div class="col-12 col-md-12 col-lg-3 mb-4">
-                <a href="#">
-                    <img src="https://cdn.oantagonista.com/uploads/2024/04/7b3c5bb401da576bd640addf39e16073920e351e.jpg"
-                        alt="Tech" class="img-fluid">
-                </a>
-                <p class="text-center mt-4">Saúde</p>
-            </div>
-        </div>
-    </div>
-</section>
