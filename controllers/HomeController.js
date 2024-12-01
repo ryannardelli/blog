@@ -1,4 +1,5 @@
 const Post = require("../models/Post");
+const User = require("../models/User");
 const moment = require("moment");
 
 module.exports = class HomeController {
@@ -16,7 +17,8 @@ module.exports = class HomeController {
 
             // Pegar o post em destaque (o mais recente)
             const featuredPost = await Post.findOne({
-                order: [['createdAt', 'DESC']], // O post mais recente
+                order: [['createdAt', 'DESC']],
+                include: User
             });
             const featuredPostPlain = featuredPost ? featuredPost.get() : null;
 
@@ -31,6 +33,7 @@ module.exports = class HomeController {
                 isAuthenticated,
                 posts: postsPlain,
                 featuredPost: featuredPostPlain,
+                UserName: featuredPostPlain.User.name,
                 formattedDate
             });
         } catch (err) {
