@@ -83,7 +83,7 @@
 #content {
     background: #fff;
     border-radius: 10px;
-    max-width: 600px;
+    max-width: 800px;
     padding: 30px;
     background: transparent;
     color: #fff;
@@ -105,18 +105,22 @@
 
 #read-post {
     width: 300px;
-    padding: 0.5rem 0.3rem;
+    padding: 0.8rem 0.3rem;
     border-radius: 10px;
     background: #4169E1;
-    border-color: #0d6efd;
+    border: none;
     font-weight: 600;
     box-shadow: 5px 5px 5px black;
     transition: 0.3s;
 }
 
 #read-post:hover {
-    background: transparent;
+    background: #fff;
     color: #212529;
+}
+
+#date-post {
+    white-space: nowrap;
 }
 
 @media (max-width: 480px) {

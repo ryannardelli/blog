@@ -6,16 +6,16 @@
 <section>
     <div class="container-fluid">
         <div class="row" id="featured-post">
-            <div class="col-12 col-md-6 order-2 order-md-1 mt-4 mt-md-0" id="content">
+            <div class="col-12 col-md-12 col-lg-6 order-2 order-md-2 order-lg-1 mt-4 mt-md-0" id="content">
                 <h1>{{featuredPost.title}}</h1>
                 <p>{{featuredPost.summary}}</p>
 
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-12 col-lg-4">
                             <p><strong>Autor:</strong></p>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-12 col-lg-8" id="date-post">
                             <p><strong>Data:</strong> {{formattedDate}}</p>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 order-1 order-md-2">
+            <div class="col-12 col-md-12 col-lg-6 order-1 order-md-1 order-lg-2">
                 <img src="{{featuredPost.post_picture}}" alt="{{featuredPost.title}}" class="img-fluid">
             </div>
         </div>
