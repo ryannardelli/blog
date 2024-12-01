@@ -279,12 +279,5 @@ module.exports = class DashboardController {
       console.log("Erro ao renderizar o viewPost", err);
       res.status(500).send("Erro ao carregar o view post");
   }
-    
-  //   try {
-  //     res.render("dashboard/postView");
-  // } catch (err) {
-  //     console.log("Erro ao renderizar o postView", err);
-  //     res.status(500).send("Erro ao carregar o postView");
-  // }
   }
 };

@@ -1,41 +1,23 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/dashboard.js" defer></script>
+
 <section id="posts" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Posts em Destaque</h2>
+        <h2 class="text-center mb-4">Postagens Recente</h2>
         <div class="row g-4">
+            {{#each posts}}
             <div class="col-lg-4 col-md-6">
                 <div class="card shadow-sm">
-                    <img src="https://services.meteored.com/img/article/inteligencia-artificial-aprende-a-reconstruir-imagens-vistas-por-pessoas-ciencia-fotos-1679175318563_1280.jpg"
-                        class="card-img-top" alt="Post 1">
+                    <img src="{{this.post_picture}}" class="card-img-top" alt="{{this.title}}">
                     <div class="card-body">
-                        <h5 class="card-title">Título do Post 1</h5>
-                        <p class="card-text">Um resumo breve do post para capturar a atenção do leitor.</p>
-                        <a href="#" class="btn btn-outline-primary">Leia Mais</a>
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <p class="card-text">{{this.summary}}</p>
+                        <a href="/dashboard/postView/{{this.id}}" class="btn btn-outline-primary">Leia Mais</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card shadow-sm">
-                    <img src="https://s2-techtudo.glbimg.com/YV466w-hUwF_dTQIHPj_sbg9pW4=/0x0:1536x864/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2024/P/F/9THicRSG2c2VTkIKVkAw/imagine.art-ai-2.png"
-                        class="card-img-top" alt="Post 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Título do Post 2</h5>
-                        <p class="card-text">Outro resumo para atrair leitores ao conteúdo.</p>
-                        <a href="#" class="btn btn-outline-primary">Leia Mais</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card shadow-sm">
-                    <img src="https://next-images.123rf.com/index/_next/image/?url=https://assets-cdn.123rf.com/index/static/assets/top-section-bg.jpeg&w=3840&q=75"
-                        class="card-img-top" alt="Post 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Título do Post 3</h5>
-                        <p class="card-text">Mais um resumo interessante para despertar curiosidade.</p>
-                        <a href="#" class="btn btn-outline-primary">Leia Mais</a>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
         </div>
     </div>
 </section>
