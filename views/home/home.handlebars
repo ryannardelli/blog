@@ -7,41 +7,28 @@
     <div class="container-fluid">
         <div class="row" id="featured-post">
             <div class="col-12 col-md-6 order-2 order-md-1 mt-4 mt-md-0" id="content">
-                <h1>Titulo</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur repellat debitis minus qui
-                    eveniet ex eius, rerum perferendis optio maxime nostrum consequatur iure ullam sint facere
-                    necessitatibus ipsa, deserunt in?
-                </p>
+                <h1>{{featuredPost.title}}</h1>
+                <p>{{featuredPost.summary}}</p>
 
                 <div class="col-12">
                     <div class="row">
                         <div class="col-12 col-md-6">
-                            <p><strong>Autor:</strong> João Silva</p>
+                            <p><strong>Autor:</strong> {{featuredPost.author}}</p>
                         </div>
                         <div class="col-12 col-md-6">
-                            <p><strong>Data:</strong> 30 de Novembro de 2024</p>
+                            <p><strong>Data:</strong> {{featuredPost.createdAt}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-12">
-                    <a href="#" class="btn btn-primary" id="read-post">LER AGORA</a>
+                    <a href="/dashboard/postViewHome/{{featuredPost.id}}" class="btn btn-primary mt-4 mt-md-0" id="read-post">LER AGORA</a>
                 </div>
             </div>
 
             <div class="col-12 col-md-6 order-1 order-md-2">
-                <img src="https://conteudize.ai/blog/wp-content/uploads/2024/06/como-criar-prompts-para-geracao-de-imagens-com-ia.webp"
-                    alt="Image" class="img-fluid">
+                <img src="{{featuredPost.post_picture}}" alt="{{featuredPost.title}}" class="img-fluid">
             </div>
-            {{!-- <div class="row mt-3">
-                <div class="col-6">
-                    <p><strong>Autor:</strong> João Silva</p>
-                </div>
-                <div class="col-6">
-                    <p><strong>Data:</strong> 30 de Novembro de 2024</p>
-                </div>
-            </div> --}}
         </div>
     </div>
 </section>
