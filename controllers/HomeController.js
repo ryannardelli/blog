@@ -1,4 +1,5 @@
 const Post = require("../models/Post");
+const moment = require("moment");
 
 module.exports = class HomeController {
     static async showHome(req, res) {
@@ -19,6 +20,10 @@ module.exports = class HomeController {
             });
             const featuredPostPlain = featuredPost ? featuredPost.get() : null;
 
+            const formattedDate = moment(featuredPostPlain.createdAt).format(
+                "DD [de] MMMM [de] YYYY"
+              );
+
             // Enviar ambos ao template
             res.render('home/home', { 
                 showHeaderFooter: true, 
@@ -26,6 +31,7 @@ module.exports = class HomeController {
                 isAuthenticated,
                 posts: postsPlain,
                 featuredPost: featuredPostPlain,
+                formattedDate
             });
         } catch (err) {
             console.log('Erro ao renderizar a home', err);
