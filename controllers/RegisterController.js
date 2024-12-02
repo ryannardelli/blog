@@ -17,7 +17,10 @@ module.exports = class RegisterController {
                 name: req.body.name,
                 email: req.body.email,
                 function: req.body.function,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
                 password: req.body.password,
+                country: req.body.country,
             };
             await User.create(user);
             res.redirect('/?successRegister=true');

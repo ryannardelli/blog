@@ -13,6 +13,7 @@ module.exports = class HomeController {
                 limit: 3, // Limita a 3 posts
                 order: [['createdAt', 'DESC']], // Ordena os posts pela data de criação
             });
+            
             const postsPlain = posts.map(post => post.get());
 
             // Pegar o post em destaque (o mais recente)
@@ -33,7 +34,8 @@ module.exports = class HomeController {
                 isAuthenticated,
                 posts: postsPlain,
                 featuredPost: featuredPostPlain,
-                UserName: featuredPostPlain.User.name,
+                UserFirstName: featuredPostPlain.User.firstName,
+                UserLastName: featuredPostPlain.User.lastName,
                 formattedDate
             });
         } catch (err) {

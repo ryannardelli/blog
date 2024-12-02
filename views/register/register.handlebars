@@ -6,48 +6,68 @@
     <div class="registration-container">
         <h2>Cadastro</h2>
         <form autocomplete="off" method="post" action="/register/create" class="needs-validation" novalidate>
-            <!-- Campo de Nome -->
-            <div class="mb-3">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Seu Nome Completo" required>
-                <div class="invalid-feedback">Por favor, insira seu nome completo.</div>
-            </div>
+            <div class="row">
 
-            <!-- Campo de E-mail -->
-            <div class="mb-3">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Seu E-mail" required>
-                <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
-            </div>
-
-            <!-- Campo de Função -->
-            <div class="mb-3">
-                <input type="text" class="form-control" id="function" name="function"
-                    placeholder="Sua função (ex: Estudante, Editor, Leitor)" required>
-                <div class="invalid-feedback">Por favor, insira sua função.</div>
-            </div>
-
-            <!-- Campo de Senha -->
-            <div class="mb-3 position-relative">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Sua Senha"
-                    pattern="(?=.*[A-Za-z])(?=.*[\W_]).{6,}" min="6" required>
-                <div class="invalid-feedback">
-                    A senha deve ter no mínimo 6 caracteres, incluir pelo menos uma letra e um caractere especial.
+                <!-- Campo de Nome Completo -->
+                <div class="col-12">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Seu Nome Completo"
+                            required>
+                        <div class="invalid-feedback">Por favor, insira seu nome completo.</div>
+                    </div>
                 </div>
-                <!-- Ícone de Olho para Senha -->
-                <i id="togglePassword" class="fas fa-eye position-absolute"
-                    style="top: 34%; right: 35px; cursor: pointer;"></i>
-            </div>
 
-            <!-- Campo de Confirmação de Senha -->
-            <div class="mb-3 position-relative">
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Senha" required>
-                <div class="invalid-feedback">
-                    A confirmação de senha deve corresponder à senha.
+                <div class="col-6">
+                    <input type="text" class="form-control" id="firstName" name="firstName"
+                        placeholder="Seu nome" required>
+                    <div class="invalid-feedback">Por favor, insira seu nome.</div>
                 </div>
-                <!-- Ícone de Olho para Confirmar Senha -->
-                <i id="toggleConfirmPassword" class="fas fa-eye position-absolute"
-                    style="top: 34%; right: 35px; cursor: pointer;"></i>
-            </div>
 
+                <div class="col-6 mb-3">
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Seu Sobrenome"
+                        required>
+                    <div class="invalid-feedback">Por favor, insira seu nome.</div>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Seu E-mail" required>
+                    <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
+                </div>
+
+                <div class="col-6 mb-3">
+                    <input type="text" class="form-control" id="function" name="function"
+                        placeholder="Sua função (ex: Estudante, Editor, Leitor)" required>
+                    <div class="invalid-feedback">Por favor, insira sua função.</div>
+                </div>
+
+                <div class="col-6 mb-3">
+                    <input type="text" class="form-control" id="country" name="country"
+                        placeholder="Seu país de origem" required>
+                    <div class="invalid-feedback">Por favor, insira seu país.</div>
+                </div>
+
+                <div class="col-6 mb-3 position-relative">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Sua Senha"
+                        pattern="(?=.*[A-Za-z])(?=.*[\W_]).{6,}" min="6" required>
+                    <div class="invalid-feedback">
+                        A senha deve ter no mínimo 6 caracteres, incluir pelo menos uma letra e um caractere especial.
+                    </div>
+                    <!-- Ícone de Olho para Senha -->
+                    <i id="togglePassword" class="fas fa-eye position-absolute"
+                        style="top: 34%; right: 35px; cursor: pointer;"></i>
+                </div>
+
+                <div class="col-6 mb-3 position-relative">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Senha"
+                        required>
+                    <div class="invalid-feedback">
+                        A confirmação de senha deve corresponder à senha.
+                    </div>
+                    <!-- Ícone de Olho para Confirmar Senha -->
+                    <i id="toggleConfirmPassword" class="fas fa-eye position-absolute"
+                        style="top: 34%; right: 35px; cursor: pointer;"></i>
+                </div>
+            </div>
             <!-- Botão de Registro -->
             <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
         </form>
@@ -103,7 +123,7 @@
             this.classList.toggle('fa-eye-slash');
         });
 
-       
+
 
         toggleConfirmPassword.addEventListener('click', function () {
             const type = confirmPasswordField.type === 'password' ? 'text' : 'password';

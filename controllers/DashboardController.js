@@ -99,7 +99,6 @@ module.exports = class DashboardController {
     }
   }
 
-  // settings here
   static async showConfig(req, res) {
     const user = await User.findByPk(req.session.userId);
     try {
@@ -114,13 +113,19 @@ module.exports = class DashboardController {
 
   static async updateProfile(req, res) {
     try {
-      const { userId, name, email } = req.body;
+      const { userId, name, email, firstName, lastName, bio, country} = req.body;
   
       const userData = {
         id: userId,
         name,
         email,
+        firstName,
+        lastName,
+        bio,
+        country,
       };
+
+      console.log(req.body);
   
       await User.update(userData, { where: { id: userId } });
       res.redirect('/dashboard/config');

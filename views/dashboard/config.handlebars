@@ -16,31 +16,41 @@
             </div>
 
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-6 mb-4">
-                    <label for="name" id="name">Nome:</label>
+                <div class="col-12 col-md-12 col-lg-12 mb-4">
+                    <label for="name" id="name">Nome Completo:</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-6 mb-4">
-                    <label for="email">E-mail:</label>
-                    <input type="text" id="email" name="function" class="form-control" value="{{user.email}}">
+                <div class="col-6 mb-3">
+                    <label for="name" id="firstName">Nome:</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" value="{{user.firstName}}">
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-6 mb-4">
+                  <div class="col-6 mb-3">
+                    <label for="name" id="lastName">Sobrenome:</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" value="{{user.lastName}}">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="email" name="email" class="form-control" value="{{user.email}}">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6 mb-3">
                     <label for="function">Função:</label>
                     <input type="text" id="function" name="function" class="form-control" value="{{user.function}}">
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-6 mb-4">
+                <div class="col-12 col-md-12 col-lg-12 mb-3">
                     <label for="country">País</label>
-                    <input type="text" id="country" name="country" class="form-control"
+                    <input type="text" id="country" name="country" class="form-control" value="{{user.country}}"
                         placeholder="Digite seu país de origem">
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-3">
                     <label for="bio" class="form-label">Bio:</label>
                     <textarea id="bio" name="bio" rows="6" class="form-control"
-                        placeholder="O que você quer que as pessoas saibam sobre você?"></textarea>
+                        placeholder="O que você quer que as pessoas saibam sobre você?">{{user.bio}}</textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
