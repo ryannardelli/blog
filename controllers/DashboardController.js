@@ -99,18 +99,33 @@ module.exports = class DashboardController {
     }
   }
 
+  // settings here
   static async showConfig(req, res) {
     const user = await User.findByPk(req.session.userId);
-    const nameParts = user.name.split(" ");
-    const firstName = nameParts[0];
     try {
       res.render("dashboard/config", {
         layout: "dashboard",
         user: user.toJSON(),
-        firstName,
       });
     } catch (err) {
       console.log("Erro ao renderizar o config");
+    }
+  }
+
+  static async updateProfile(req, res) {
+    try {
+      const { userId, name, email } = req.body;
+  
+      const userData = {
+        id: userId,
+        name,
+        email,
+      };
+  
+      await User.update(userData, { where: { id: userId } });
+      res.redirect('/dashboard/config');
+    } catch (e) {
+      console.log('Erro ao atualizar o perfil', e);
     }
   }
 

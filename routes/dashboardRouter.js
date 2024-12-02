@@ -13,6 +13,8 @@ router.get('/createPost', DashboardController.showCreatePost);
 router.get('/editPost/:id', DashboardController.showEditPost);
 
 router.post('/submitPost', DashboardController.SendPost);
+router.post('/updateProfile', DashboardController.updateProfile);
+
 router.post('/deletePost/:id', DashboardController.deletePost);
 router.post('/editPost/:id', DashboardController.editPost);
 
