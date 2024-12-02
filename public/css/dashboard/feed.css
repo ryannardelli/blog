@@ -117,6 +117,12 @@ section#posts {
     margin: auto;
 }
 
+#container-create-posts textarea {
+    color: black;
+    font-weight: normal;
+    font-size: 1em;
+}
+
 
 form .form-label {
     font-weight: bold;

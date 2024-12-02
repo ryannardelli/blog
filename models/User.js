@@ -51,7 +51,7 @@ const User = db.define("User", {
     },
   },
 
-  function: {
+  role: {
     type: DataTypes.STRING(250),
     allowNull: false,
   },

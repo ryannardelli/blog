@@ -113,7 +113,7 @@ module.exports = class DashboardController {
 
   static async updateProfile(req, res) {
     try {
-      const { userId, name, email, firstName, lastName, bio, country} = req.body;
+      const { userId, name, email, firstName, lastName, bio, country, role} = req.body;
   
       const userData = {
         id: userId,
@@ -123,6 +123,7 @@ module.exports = class DashboardController {
         lastName,
         bio,
         country,
+        role
       };
 
       console.log(req.body);

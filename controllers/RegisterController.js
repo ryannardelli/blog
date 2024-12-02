@@ -16,7 +16,7 @@ module.exports = class RegisterController {
             const user = {
                 name: req.body.name,
                 email: req.body.email,
-                function: req.body.function,
+                role: req.body.function,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 password: req.body.password,
