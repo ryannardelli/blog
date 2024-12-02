@@ -2,41 +2,64 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="/css/dashboard/config.css">
 
-<div class="container mt-5">
-    <h2 class="text-center">Configurações do Perfil</h2>
-    <form action="/atualizar-perfil" method="POST" enctype="multipart/form-data" autocomplete="off">
-        <div class="row">
-            <!-- Imagem de Perfil -->
-            <div class="col-md-4">
-                <div class="text-center">
-                    <label for="perfilImage" class="btn btn-outline-primary" id="alterImage">
-                        <i class="bi bi-camera-fill"></i> Alterar Imagem
-                    </label>
-                    <input type="file" id="perfilImage" name="perfilImage" class="d-none" accept="image/*">
-                    <img id="perfilPreview"
-                        src="{{user.profile_picture}}"
-                        alt="Imagem de Perfil" class="img-fluid rounded-circle mt-3"
-                        style="width: 150px; height: 150px;">
+<main>
+    <div class="container-FLUID" id="config-container">
+        <h2 class="text-center mb-4">Configurações de Perfil</h2>
+        <form action="/atualizar-perfil" method="POST" enctype="multipart/form-data" autocomplete="off">
+
+            <div class="col-12 profile-container">
+                <img id="perfilPreview" src="{{user.profile_picture}}" alt="Imagem de Perfil" class="profile-img">
+                <label for="fileInput" class="upload-icon">
+                    <i class="bi bi-camera"></i>
+                </label>
+                <input type="file" id="fileInput" name="profile_picture" class="file-input" accept="image/*">
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="firstName" id="firstName">Nome:</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName"
+                        placeholder="Digite seu nome">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="LastName">Sobrenome:</label>
+                    <input type="text" class="form-control" id="LastName" name="LastName"
+                        placeholder="Digite seu sobrenome">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="email" name="function" class="form-control" placeholder="Digite seu email">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="function">Função:</label>
+                    <input type="text" id="function" name="function" class="form-control"
+                        placeholder="Sua função (ex: Estudante, Editor, Leitor)">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="country">País</label>
+                    <input type="text" id="country" name="country" class="form-control"
+                        placeholder="Digite seu país de origem">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="numberPhone">Número de telefone:</label>
+                    <input type="text" id="numberPhone" name="numberPhone" class="form-control"
+                        placeholder="Digite seu número">
+                </div>
+
+                <div class="mb-4">
+                    <label for="bio" class="form-label">Bio:</label>
+                    <textarea id="bio" name="bio" rows="6" class="form-control"
+                        placeholder="O que você quer que as pessoas saibam sobre você?"></textarea>
                 </div>
             </div>
-            <!-- Dados do Usuário -->
-            <div class="col-md-8">
-                <div class="mb-3">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value="Nome Usuário" required>
-                </div>
-                <div class="mb-3">
-                    <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Nova senha"
-                        required>
-                </div>
-                <div class="mb-3">
-                    <label for="funcao" class="form-label">Função</label>
-                    <input type="text" class="form-control" id="funcao" name="funcao" placeholder="Digite sua função"
-                        required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
-            </div>
-        </div>
-    </form>
-</div>
+            <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
+
+        </form>
+    </div>
+
+</main>

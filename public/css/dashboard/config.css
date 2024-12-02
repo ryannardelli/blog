@@ -1,52 +1,43 @@
-.container {
-    background-color: #fff;
+#config-container {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
     padding: 30px;
+    max-width: 1200px;
+    margin: 1.5rem 3rem;
 }
 
-.btn btn-outline-primary {
-    white-space: nowrap;
-}
-
-#alterImage {
-    white-space: nowrap;
-}
-
-h2 {
-    font-weight: 600;
-    color: #333;
-}
-
-.btn-outline-primary {
-    font-size: 1.2em;
-}
-
-img {
+#config-container img {
+    height: 100px;
+    width: 100px;
     object-fit: cover;
-    transition: all 0.3s ease;
+    border-radius: 50%;
 }
 
-img:hover {
-    transform: scale(1.05);
+#profile-container  {
+    position: absolute;
+}
+
+.upload-icon {
+    position: relative;
+    bottom: 35px;
+    left: 65px;
+    color: #fff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    background-color: #4169E1;
+    transition: 0.3s ease;
 }
 
-.form-control, .form-select {
-    border-radius: 8px;
-}
-
-button[type="submit"] {
-    transition: all 0.3s ease;
-}
-
-button[type="submit"]:hover {
+.upload-icon:hover {
     background-color: #0056b3;
-    border-color: #0056b3;
 }
 
-.mb-3 label {
-    font-weight: 600;
-    color: #555;
+.file-input {
+    display: none; /* Oculta o input de arquivo */
 }
