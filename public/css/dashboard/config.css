@@ -41,3 +41,7 @@
 .file-input {
     display: none; /* Oculta o input de arquivo */
 }
+
+label {
+    margin-bottom: 10px;
+}
