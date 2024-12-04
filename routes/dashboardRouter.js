@@ -21,5 +21,6 @@ router.post('/editPost/:id', DashboardController.editPost);
 router.get('/postView/:id', DashboardController.showPostView);
 router.get('/postViewHome/:id', DashboardController.showPostViewPerHome);
 router.post('/updateImageProfile', DashboardController.updateProfilePicture);
+router.post('/uploadImagePost/:id', DashboardController.uploadImagePost);
 
 module.exports = router;

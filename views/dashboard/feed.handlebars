@@ -9,16 +9,27 @@
       {{#each posts}}
         <div class="col-lg-4 col-md-6">
           <div class="card shadow-sm border-0">
-            <img src="{{this.post_picture}}" class="card-img-top rounded-top" alt="Post">
+            <div class="position-relative">
+              <!-- Imagem do post -->
+              <img src="{{this.post_picture}}" class="card-img-top rounded-top" alt="Post">
+
+              <!-- Formulário com campo de upload e ícone de câmera no centro -->
+              <form action="/dashboard/uploadImagePost/{{this.id}}" method="POST" enctype="multipart/form-data" class="position-absolute top-50 start-50 translate-middle text-center">
+                <!-- Campo de upload de imagem -->
+                <input type="file" name="post_picture" id="file-upload-{{this.id}}" style="display:none" accept="image/*" onchange="this.form.submit()"/>
+                <!-- Ícone de câmera que serve como botão para abrir o campo de upload -->
+                <label for="file-upload-{{this.id}}" class="btn btn-link p-0" title="Upload de Imagem">
+                  <i class="bi bi-camera-fill text-white" style="font-size: 3rem;"></i>
+                </label>
+              </form>
+            </div>
             <div class="card-body">
               <h5 class="card-title">{{this.title}}</h5>
               <p class="card-text text-muted">{{this.summary}}</p>
               <div class="mt-3" id="container-links">
                 <span class="text-secondary small">Publicado em: {{this.createdAt}}</span>
                 <div class="btn-group">
-                  
                   <!-- Botão para exibir o post -->
-
                   <a href="/dashboard/postView/{{this.id}}" class="btn rounded-circle ms-2" id="link" title="Exibir">
                     <i class="bi bi-eye"></i>
                   </a>
@@ -30,7 +41,7 @@
                   </form>
 
                   <form action="/dashboard/deletePost/{{this.id}}" method="post">
-                    <button class="btn rounded-circle ms-2" title="Excluir"  id="link">
+                    <button class="btn rounded-circle ms-2" title="Excluir" id="link">
                       <i class="bi bi-trash"></i>
                     </button>
                   </form>
@@ -46,3 +57,6 @@
     </div>
   </div>
 </section>
+
+
+

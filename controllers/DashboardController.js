@@ -365,4 +365,34 @@ module.exports = class DashboardController {
       res.status(500).send("Erro ao atualizar a imagem de perfil.");
     }
   }
+
+  static async uploadImagePost(req, res) {
+    try {
+      if (req.files && req.files.post_picture) {
+        const image = req.files.post_picture;
+        const postId = req.params.id;
+
+        const uploadPath = path.join(__dirname, "../public/images", image.name);
+
+        image.mv(uploadPath, async (err) => {
+          if (err) {
+            console.error("Erro ao fazer upload da imagem:", err);
+            return res.status(500).send("Erro ao fazer upload da imagem.");
+          }
+
+          await Post.update(
+            { post_picture: `/images/${image.name}` },
+            { where: { id: postId } }
+          );
+
+          res.redirect("/dashboard/feed");
+        });
+      } else {
+        res.status(400).send("Nenhuma imagem foi enviada.");
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar a imagem de perfil:", error);
+      res.status(500).send("Erro ao atualizar a imagem de perfil.");
+    }
+  }
 };
