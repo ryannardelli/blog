@@ -8,6 +8,7 @@ module.exports = class DashboardController {
   static async showDashboardMain(req, res) {
     try {
       const user = await User.findByPk(req.session.userId);
+      const id = req.session.userId;
 
       if (!user) {
         return res.status(404).send("Usuário não encontrado.");
@@ -15,11 +16,14 @@ module.exports = class DashboardController {
 
       const nameParts = user.name.split(" ");
       const firstName = nameParts[0];
+      const postCount = await Post.count({
+        where: {userId: id},
+      });
 
       res.render("dashboard/dashboard", {
         layout: "dashboard",
         user: user.toJSON(),
-        firstName,
+        postCount
       });
     } catch (err) {
       console.log("Erro ao renderizar o dashboard", err);
