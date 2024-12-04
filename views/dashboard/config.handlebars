@@ -3,37 +3,51 @@
 <link rel="stylesheet" href="/css/dashboard/config.css">
 
 <main>
-    <div class="container-FLUID" id="config-container">
+    <div class="container-fluid" id="config-container">
         <h2 class="text-center mb-4">Configurações de Perfil</h2>
-        <form action="/dashboard/updateProfile" method="POST" autocomplete="off">
-            <input type="hidden" name="userId" value="{{user.id}}">
-            <div class="col-12 profile-container">
-                <img id="perfilPreview" src="{{user.profile_picture}}" alt="Imagem de Perfil" class="profile-img">
+
+        <!-- Formulário para atualizar imagem de perfil -->
+        <div class="col-12 profile-container">
+            <img id="perfilPreview" src="{{user.profile_picture}}" alt="Imagem de Perfil" class="profile-img">
+            <form action="/dashboard/updateImageProfile" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="userId" value="{{user.id}}">
                 <label for="fileInput" class="upload-icon">
                     <i class="bi bi-camera"></i>
                 </label>
-                <input type="file" id="fileInput" name="profile_picture" class="file-input" accept="image/*">
-            </div>
+                <input 
+                    type="file" 
+                    id="fileInput" 
+                    name="profile_picture" 
+                    class="file-input" 
+                    accept="image/*" 
+                    onchange="this.form.submit()"
+                >
+            </form>
+        </div>
+
+        <!-- Formulário principal -->
+        <form action="/dashboard/updateProfile" method="POST" autocomplete="off">
+            <input type="hidden" name="userId" value="{{user.id}}">
 
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 mb-4">
-                    <label for="name" id="name">Nome Completo:</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
+                    <label for="fullName">Nome Completo:</label>
+                    <input type="text" class="form-control" id="fullName" name="name" value="{{user.name}}">
                 </div>
 
                 <div class="col-6 mb-3">
-                    <label for="name" id="firstName">Nome:</label>
+                    <label for="firstName">Nome:</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" value="{{user.firstName}}">
                 </div>
 
-                  <div class="col-6 mb-3">
-                    <label for="name" id="lastName">Sobrenome:</label>
+                <div class="col-6 mb-3">
+                    <label for="lastName">Sobrenome:</label>
                     <input type="text" class="form-control" id="lastName" name="lastName" value="{{user.lastName}}">
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
                     <label for="email">E-mail:</label>
-                    <input type="text" id="email" name="email" class="form-control" value="{{user.email}}">
+                    <input type="email" id="email" name="email" class="form-control" value="{{user.email}}">
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
@@ -42,20 +56,30 @@
                 </div>
 
                 <div class="col-12 col-md-12 col-lg-12 mb-3">
-                    <label for="country">País</label>
-                    <input type="text" id="country" name="country" class="form-control" value="{{user.country}}"
-                        placeholder="Digite seu país de origem">
+                    <label for="country">País:</label>
+                    <input 
+                        type="text" 
+                        id="country" 
+                        name="country" 
+                        class="form-control" 
+                        value="{{user.country}}" 
+                        placeholder="Digite seu país de origem"
+                    >
                 </div>
 
-                <div class="mb-3">
+                <div class="col-12 mb-3">
                     <label for="bio" class="form-label">Bio:</label>
-                    <textarea id="bio" name="bio" rows="6" class="form-control"
-                        placeholder="O que você quer que as pessoas saibam sobre você?">{{user.bio}}</textarea>
+                    <textarea 
+                        id="bio" 
+                        name="bio" 
+                        rows="6" 
+                        class="form-control" 
+                        placeholder="O que você quer que as pessoas saibam sobre você?"
+                    >{{user.bio}}</textarea>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
 
+            <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
         </form>
     </div>
-
 </main>

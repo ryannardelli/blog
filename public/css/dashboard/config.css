@@ -20,7 +20,7 @@
 .upload-icon {
     position: relative;
     bottom: 35px;
-    left: 65px;
+    left: 40px;
     color: #fff;
     border-radius: 50%;
     width: 30px;
@@ -30,7 +30,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background-color: #4169E1;
     transition: 0.3s ease;
 }
 
@@ -39,7 +38,7 @@
 }
 
 .file-input {
-    display: none; /* Oculta o input de arquivo */
+    display: none;
 }
 
 label {

@@ -60,9 +60,6 @@ const User = db.define("User", {
     type: DataTypes.STRING,
     allowNull: true,
     defaultValue: "https://www.gov.br/cdn/sso-status-bar/src/image/user.png",
-    validate: {
-      isUrl: true, // Garante que seja uma URL válida
-    },
   },
 });
 

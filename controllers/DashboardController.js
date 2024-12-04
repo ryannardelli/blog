@@ -330,4 +330,35 @@ module.exports = class DashboardController {
       res.status(500).send("Erro ao carregar o view post");
   }
   }
+
+  static async updateProfilePicture(req, res) {
+    try {
+      const { userId } = req.body;
+
+      if (req.files && req.files.profile_picture) {
+        const image = req.files.profile_picture;
+
+        const uploadPath = path.join(__dirname, "../public/images", image.name);
+
+        image.mv(uploadPath, async (err) => {
+          if (err) {
+            console.error("Erro ao fazer upload da imagem:", err);
+            return res.status(500).send("Erro ao fazer upload da imagem.");
+          }
+
+          await User.update(
+            { profile_picture: `/images/${image.name}` },
+            { where: { id: userId } }
+          );
+
+          res.redirect("/dashboard/config");
+        });
+      } else {
+        res.status(400).send("Nenhuma imagem foi enviada.");
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar a imagem de perfil:", error);
+      res.status(500).send("Erro ao atualizar a imagem de perfil.");
+    }
+  }
 };
