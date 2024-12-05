@@ -27,6 +27,7 @@ module.exports = class HomeController {
                 "DD [de] MMMM [de] YYYY"
               );
 
+
             // Enviar ambos ao template
             res.render('home/home', { 
                 showHeaderFooter: true, 
@@ -36,6 +37,7 @@ module.exports = class HomeController {
                 featuredPost: featuredPostPlain,
                 UserFirstName: featuredPostPlain.User.firstName,
                 UserLastName: featuredPostPlain.User.lastName,
+                isLoggedIn: true,
                 formattedDate
             });
         } catch (err) {

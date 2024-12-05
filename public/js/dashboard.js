@@ -23,3 +23,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+const likeButtons = document.querySelectorAll('.like-button');
+
+likeButtons.forEach((likeButton) => {
+  const heartIcon = likeButton.querySelector('.heart-icon');
+  const likesAmount = likeButton.querySelector('.likes-amount');
+
+  let likeAmount = parseInt(likesAmount.textContent, 10);
+
+  heartIcon.addEventListener('click', () => {
+    heartIcon.classList.toggle('liked');
+    if (heartIcon.classList.contains('liked')) {
+      likeAmount++;
+    } else {
+      likeAmount--;
+    }
+    likesAmount.textContent = likeAmount;
+  });
+});
