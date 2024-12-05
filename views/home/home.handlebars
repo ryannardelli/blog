@@ -53,16 +53,20 @@
                             </a>
 
                             {{#if ../isAuthenticated}}
-                            <div class="d-flex justify-content-between mt-3">
+                            <div class="d-flex gap-5 mt-3">
                                 <div class="like-button">
                                     <div class="heart-bg">
                                         <div class="heart-icon"></div>
                                     </div>
                                     <div class="likes-amount">7</div>
                                 </div>
-                                <button class="btn btn-light">
-                                    <i class="bi bi-chat-dots"></i> Comentar
-                                </button>
+
+                                 <div class="comment-button">
+                                    <div class="comment-bg">
+                                        <div class="comment-icon"></div>
+                                    </div>
+                                    <div class="comment-amount">0</div>
+                                </div>
                             </div>
                             {{/if}}
                         </div>
