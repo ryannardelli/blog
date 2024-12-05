@@ -239,6 +239,10 @@ form input[type="file"] {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+#image-post {
+    height: 300px;
+}
+
 .post-image img {
     width: 100%;
     height: auto;
