@@ -9,21 +9,27 @@ module.exports = class DashboardController {
     try {
       const user = await User.findByPk(req.session.userId);
       const id = req.session.userId;
-
+  
       if (!user) {
         return res.status(404).send("Usuário não encontrado.");
       }
-
-      const nameParts = user.name.split(" ");
-      const firstName = nameParts[0];
+  
       const postCount = await Post.count({
-        where: {userId: id},
+        where: { userId: id },
       });
-
+  
+      // Somando o like_count de todos os posts
+      const likeCount = await Post.sum('like_count', {
+        where: { userId: id },
+      });
+  
+      console.log("Likes totais:", likeCount);
+  
       res.render("dashboard/dashboard", {
         layout: "dashboard",
         user: user.toJSON(),
-        postCount
+        postCount,
+        likeCount,
       });
     } catch (err) {
       console.log("Erro ao renderizar o dashboard", err);
@@ -117,8 +123,9 @@ module.exports = class DashboardController {
 
   static async updateProfile(req, res) {
     try {
-      const { userId, name, email, firstName, lastName, bio, country, role} = req.body;
-  
+      const { userId, name, email, firstName, lastName, bio, country, role } =
+        req.body;
+
       const userData = {
         id: userId,
         name,
@@ -127,15 +134,15 @@ module.exports = class DashboardController {
         lastName,
         bio,
         country,
-        role
+        role,
       };
 
       console.log(req.body);
-  
+
       await User.update(userData, { where: { id: userId } });
-      res.redirect('/dashboard/config');
+      res.redirect("/dashboard/config");
     } catch (e) {
-      console.log('Erro ao atualizar o perfil', e);
+      console.log("Erro ao atualizar o perfil", e);
     }
   }
 
@@ -156,19 +163,19 @@ module.exports = class DashboardController {
   static async SendPost(req, res) {
     try {
       const { userId, title, summary, content, category } = req.body;
-      
+
       if (req.files && req.files.image) {
         const image = req.files.image;
-  
+
         // Gerar o caminho do arquivo
         const uploadPath = path.join(__dirname, "../public/images", image.name);
-  
+
         // Mover o arquivo para o diretório de uploads
         image.mv(uploadPath, async (err) => {
           if (err) {
             return res.status(500).send("Erro ao fazer upload da imagem.");
           }
-  
+
           // Salvar o caminho da imagem no banco de dados
           const post = await Post.create({
             userId,
@@ -178,7 +185,7 @@ module.exports = class DashboardController {
             category,
             post_picture: `/images/${image.name}`, // Caminho relativo para o frontend
           });
-  
+
           res.redirect("/dashboard/feed");
         });
       } else {
@@ -190,7 +197,7 @@ module.exports = class DashboardController {
           category,
           post_picture: "/images/default.jpg", // Imagem padrão caso não haja upload
         });
-  
+
         res.redirect("/dashboard/feed");
       }
     } catch (error) {
@@ -214,7 +221,7 @@ module.exports = class DashboardController {
       res.render("dashboard/feed", {
         layout: "dashboard",
         posts: postsPlain,
-        user: user.toJSON()
+        user: user.toJSON(),
       });
     } catch (e) {
       console.log("Erro ao carregar os posts", e);
@@ -224,46 +231,49 @@ module.exports = class DashboardController {
 
   static async showEditPost(req, res) {
     try {
-        const postId = req.params.id;
-        const post = await Post.findByPk(postId);
+      const postId = req.params.id;
+      const post = await Post.findByPk(postId);
 
-        if (!post) {
-            return res.status(404).send("Post não encontrado");
-        }
+      if (!post) {
+        return res.status(404).send("Post não encontrado");
+      }
 
-        const user = await User.findOne({
-            include: { model: Post, attributes: ['id', 'title', 'summary', 'content'] },
-            where: { id: post.userId },
-        });
+      const user = await User.findOne({
+        include: {
+          model: Post,
+          attributes: ["id", "title", "summary", "content"],
+        },
+        where: { id: post.userId },
+      });
 
-        if (!user) {
-            return res.status(404).send("Usuário não encontrado");
-        }
+      if (!user) {
+        return res.status(404).send("Usuário não encontrado");
+      }
 
-        const plainPost = post.get({ plain: true });
-        const plainUser = user.get({ plain: true });
+      const plainPost = post.get({ plain: true });
+      const plainUser = user.get({ plain: true });
 
-        res.render("dashboard/editPost", { post: plainPost, user: plainUser });
+      res.render("dashboard/editPost", { post: plainPost, user: plainUser });
     } catch (err) {
-        console.log("Erro ao renderizar o editPost", err);
-        res.status(500).send("Erro ao carregar o formulário de edição");
+      console.log("Erro ao renderizar o editPost", err);
+      res.status(500).send("Erro ao carregar o formulário de edição");
     }
-}
+  }
 
   static async editPost(req, res) {
     try {
       const postId = req.params.id;
-  
+
       const { title, summary, content } = req.body;
-  
+
       const post = await Post.findByPk(postId);
-  
+
       if (!post) {
         return res.status(404).send("Post não encontrado");
       }
-  
+
       await post.update({ title, summary, content });
-  
+
       res.redirect("/dashboard/feed");
     } catch (e) {
       console.error("Erro ao editar o post", e);
@@ -283,27 +293,29 @@ module.exports = class DashboardController {
       const post = await Post.findByPk(postId);
 
       if (!post) {
-          return res.status(404).send("Post não encontrado");
+        return res.status(404).send("Post não encontrado");
       }
 
       const user = await User.findOne({
-          include: { model: Post, attributes: ['id', 'title', 'summary', 'content'] },
-          where: { id: post.userId },
+        include: {
+          model: Post,
+          attributes: ["id", "title", "summary", "content"],
+        },
+        where: { id: post.userId },
       });
 
       const plainPost = post.get({ plain: true });
       const plainUser = user.get({ plain: true });
-      
+
       if (!user) {
-          return res.status(404).send("Usuário não encontrado");
+        return res.status(404).send("Usuário não encontrado");
       }
 
-
       res.render("dashboard/postView", { post: plainPost, user: plainUser });
-  } catch (err) {
+    } catch (err) {
       console.log("Erro ao renderizar o viewPost", err);
       res.status(500).send("Erro ao carregar o view post");
-  }
+    }
   }
 
   static async showPostViewPerHome(req, res) {
@@ -312,27 +324,32 @@ module.exports = class DashboardController {
       const post = await Post.findByPk(postId);
 
       if (!post) {
-          return res.status(404).send("Post não encontrado");
+        return res.status(404).send("Post não encontrado");
       }
 
       const user = await User.findOne({
-          include: { model: Post, attributes: ['id', 'title', 'summary', 'content'] },
-          where: { id: post.userId },
+        include: {
+          model: Post,
+          attributes: ["id", "title", "summary", "content"],
+        },
+        where: { id: post.userId },
       });
 
       const plainPost = post.get({ plain: true });
       const plainUser = user.get({ plain: true });
-      
+
       if (!user) {
-          return res.status(404).send("Usuário não encontrado");
+        return res.status(404).send("Usuário não encontrado");
       }
 
-
-      res.render("dashboard/postViewHome", { post: plainPost, user: plainUser });
-  } catch (err) {
+      res.render("dashboard/postViewHome", {
+        post: plainPost,
+        user: plainUser,
+      });
+    } catch (err) {
       console.log("Erro ao renderizar o viewPost", err);
       res.status(500).send("Erro ao carregar o view post");
-  }
+    }
   }
 
   static async updateProfilePicture(req, res) {
