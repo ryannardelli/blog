@@ -61,7 +61,23 @@
                                     <div class="likes-amount">{{this.like_count}}</div>
                                 </div>
 
-                                 <div class="comment-button">
+                                <div class="comment-button">
+                                    <div class="comment-bg">
+                                        <div class="comment-icon"></div>
+                                    </div>
+                                    <div class="comment-amount">0</div>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="d-flex gap-5 mt-3">
+                                <div class="like-button disabled" data-post-id="{{this.id}}">
+                                    <div class="heart-bg">
+                                        <div class="heart-icon"></div>
+                                    </div>
+                                    <div class="likes-amount">{{this.like_count}}</div>
+                                </div>
+
+                                <div class="comment-button disabled">
                                     <div class="comment-bg">
                                         <div class="comment-icon"></div>
                                     </div>
@@ -69,6 +85,7 @@
                                 </div>
                             </div>
                             {{/if}}
+
                         </div>
                     </div>
                 </div>

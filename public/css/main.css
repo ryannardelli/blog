@@ -215,6 +215,10 @@
     animation: like-anim 0.7s steps(28) forwards;
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 .comment-button .comment-icon {
     height: 100px;
     width: 100px;
