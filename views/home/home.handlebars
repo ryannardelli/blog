@@ -54,11 +54,11 @@
 
                             {{#if ../isAuthenticated}}
                             <div class="d-flex gap-5 mt-3">
-                                <div class="like-button">
+                                <div class="like-button" data-post-id="{{this.id}}">
                                     <div class="heart-bg">
                                         <div class="heart-icon"></div>
                                     </div>
-                                    <div class="likes-amount">7</div>
+                                    <div class="likes-amount">{{this.like_count}}</div>
                                 </div>
 
                                  <div class="comment-button">

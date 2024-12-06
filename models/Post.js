@@ -27,6 +27,12 @@ const Post = db.define('Post', {
         type: DataTypes.TEXT,
         allowNull: true,
     },
+
+    like_count: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    },
     
     userId: {
         type: DataTypes.INTEGER,
