@@ -62,3 +62,19 @@ likeButtons.forEach((likeButton) => {
       });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const currentPath = window.location.pathname;
+
+  const links = document.querySelectorAll('.nav-link');
+
+  links.forEach(link => {
+      link.classList.remove('underline-visible');
+  });
+
+  links.forEach(link => {
+      if (currentPath === new URL(link.href).pathname) {
+          link.classList.add('underline-visible');
+      }
+  });
+});

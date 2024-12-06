@@ -22,6 +22,11 @@ a.nav-link:hover::before {
     width: 100%;
 }
 
+a.nav-link.underline-visible::before {
+    width: 100%;
+    transition: none; 
+}
+
 .btn-outline-light {
     border-width: 2px;
     transition: all 0.3s;
