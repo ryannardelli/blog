@@ -1,2 +1,2 @@
 # Blog
-Blog create with node.js
+Blog created with node.js
