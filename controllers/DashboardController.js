@@ -44,8 +44,6 @@ module.exports = class DashboardController {
     }
 
     const nameParts = user.name.split(" ");
-    const firstName = nameParts[0];
-    const lastName = nameParts[nameParts.length - 1];
 
     const formattedDate = moment(user.updatedAt).format(
       "DD [de] MMMM [de] YYYY"
@@ -55,8 +53,6 @@ module.exports = class DashboardController {
       res.render("dashboard/profile", {
         layout: "dashboard",
         user: user.toJSON(),
-        firstName,
-        lastName,
         formattedDate,
       });
     } catch (err) {
@@ -66,13 +62,10 @@ module.exports = class DashboardController {
 
   static async showPosts(req, res) {
     const user = await User.findByPk(req.session.userId);
-    const nameParts = user.name.split(" ");
-    const firstName = nameParts[0];
     try {
       res.render("dashboard/feed", {
         layout: "dashboard",
         user: user.toJSON(),
-        firstName,
       });
     } catch (err) {
       console.log("Erro ao renderizar o posts");
