@@ -26,9 +26,8 @@
 .upload-icon {
     position: relative;
     bottom: 35px;
-    left: 40px;
+    left: 60px;
     color: #fff;
-    border-radius: 50%;
     width: 30px;
     height: 30px;
     font-size: 1.5rem;
@@ -37,10 +36,17 @@
     justify-content: center;
     cursor: pointer;
     transition: 0.3s ease;
+    background-color: #0056b3;
+    border-radius: 50%;
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
 .upload-icon:hover {
-    background-color: #0056b3;
+    background-color: #4070f4;
 }
 
 .file-input {

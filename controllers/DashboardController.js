@@ -96,13 +96,10 @@ module.exports = class DashboardController {
 
   static async showReport(req, res) {
     const user = await User.findByPk(req.session.userId);
-    const nameParts = user.name.split(" ");
-    const firstName = nameParts[0];
     try {
       res.render("dashboard/report", {
         layout: "dashboard",
         user: user.toJSON(),
-        firstName,
       });
     } catch (err) {
       console.log("Erro ao renderizar o report");
