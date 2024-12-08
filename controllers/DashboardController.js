@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const Post = require("../models/Post");
-const { Op } = require('sequelize');
+const { Op } = require("sequelize");
 const path = require("path");
 
 const moment = require("moment");
@@ -10,22 +10,22 @@ module.exports = class DashboardController {
     try {
       const user = await User.findByPk(req.session.userId);
       const id = req.session.userId;
-  
+
       if (!user) {
         return res.status(404).send("Usuário não encontrado.");
       }
-  
+
       const postCount = await Post.count({
         where: { userId: id },
       });
-  
+
       // Somando o like_count de todos os posts
-      const likeCount = await Post.sum('like_count', {
+      const likeCount = await Post.sum("like_count", {
         where: { userId: id },
       });
-  
+
       console.log("Likes totais:", likeCount);
-  
+
       res.render("dashboard/dashboard", {
         layout: "dashboard",
         user: user.toJSON(),
@@ -407,11 +407,32 @@ module.exports = class DashboardController {
   static async searchUser(req, res) {
     const { search } = req.query;
     const result = await User.findAll({
-      where : {
+      where: {
         name: {
-         [Op.like]: `%${search}%`,
-      }},
+          [Op.like]: `%${search}%`,
+        },
+      },
     });
     return res.json(result);
+  }
+
+  static async userProfile(req, res) {
+    const id = req.params.id;
+
+    try {
+      // Supondo que você tenha um modelo User para buscar o usuário
+      const user = await User.findByPk(id); // Use seu método de busca do ORM (Ex: Sequelize)
+
+      if (!user) {
+        return res.status(404).send("Usuário não encontrado");
+      }
+
+      res.render("dashboard/user", {
+        user: user.toJSON(), // Passa os dados do usuário para o template
+      });
+    } catch (error) {
+      console.error("Erro ao buscar usuário: ", error);
+      res.status(500).send("Erro ao renderizar a página do usuário");
+    }
   }
 };
