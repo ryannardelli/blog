@@ -16,9 +16,9 @@
                 <p>{{user.email}}</p>
 
                 <ul class="about">
-                    <li><span>4,073</span>Followers</li>
-                    <li><span>322</span>Following</li>
-                    <li><span>200</span>Posts</li>
+                    <li><span>15</span>Followers</li>
+                    <li><span>10</span>Following</li>
+                    <li><span>{{postCount}}</span>Posts</li>
                 </ul>
 
                 <div class="content">
@@ -42,18 +42,9 @@
                 </nav>
 
                 <div class="photos">
-                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_1.avif"
-                        alt="Photo" />
-                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_2.avif"
-                        alt="Photo" />
-                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_3.avif"
-                        alt="Photo" />
-                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_4.avif"
-                        alt="Photo" />
-                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_5.avif"
-                        alt="Photo" />
-                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_6.avif"
-                        alt="Photo" />
+                    {{#each posts}}
+                    <img src="{{this.post_picture}}" alt="Photo"/>
+                    {{/each}}
                 </div>
             </div>
         </div>

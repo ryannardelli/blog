@@ -418,20 +418,28 @@ module.exports = class DashboardController {
 
   static async userProfile(req, res) {
     const id = req.params.id;
-
+  
     try {
-      // Supondo que você tenha um modelo User para buscar o usuário
-      const user = await User.findByPk(id); // Use seu método de busca do ORM (Ex: Sequelize)
-
+      // Supondo que você tenha um modelo User e Post para buscar as postagens
+      const user = await User.findByPk(id); // Busca o usuário
+      const posts = await Post.findAll({ where: { userId: id } }); // Busca as postagens do usuário
+  
       if (!user) {
         return res.status(404).send("Usuário não encontrado");
       }
 
+      const postCount = await Post.count({
+        where: { userId: id },
+      });
+  
+      // Passa o usuário e as postagens (com imagens) para o template
       res.render("dashboard/userView", {
-        user: user.toJSON(), // Passa os dados do usuário para o template
+        user: user.toJSON(),
+        posts: posts.map(post => post.toJSON()),
+        postCount // Converte as postagens para JSON
       });
     } catch (error) {
-      console.error("Erro ao buscar usuário: ", error);
+      console.error("Erro ao buscar usuário ou postagens: ", error);
       res.status(500).send("Erro ao renderizar a página do usuário");
     }
   }
