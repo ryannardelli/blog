@@ -427,7 +427,7 @@ module.exports = class DashboardController {
         return res.status(404).send("Usuário não encontrado");
       }
 
-      res.render("dashboard/user", {
+      res.render("dashboard/userView", {
         user: user.toJSON(), // Passa os dados do usuário para o template
       });
     } catch (error) {
