@@ -404,26 +404,6 @@ module.exports = class DashboardController {
     }
   }
 
-  // static async searchUser(req, res) {
-  //   const { search } = req.query;
-  
-  //   try {
-  //     // Buscar todos os usuários que contenham o termo 'search' no nome
-  //     const result = await User.findAll({
-  //       where: {
-  //         name: {
-  //           [Op.iLike]: `%${search}%` // Usando o operador LIKE para buscar por nome
-  //         }
-  //       }
-  //     });
-  
-  //     // Retornar os nomes encontrados
-  //     return res.json(result.map(user => user.name));
-  //   } catch (error) {
-  //     return res.status(500).json({ error: 'Erro ao buscar usuários' });
-  //   }
-  // }
-
   static async searchUser(req, res) {
     const { search } = req.query;
     const result = await User.findAll({

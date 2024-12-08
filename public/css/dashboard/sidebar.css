@@ -159,6 +159,44 @@ body {
     padding: 0 10px;
 }
 
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 auto;
+    margin-top: 12px;
+    width: 350px;
+    height: 421px;
+    overflow-y: auto;
+    display: none;
+}
+
+.items.show {
+    display: block;
+}
+
+.item {
+    display: flex;
+    gap: 12px;
+}
+
+.item-image img {
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.item-title {
+    font-size: 18px;
+    color: #333;
+}
+
+.item-subtitle {
+    font-size: 12px;
+    color: #666;
+}
+
 .toggle {
     position: relative;
     width: 60px;

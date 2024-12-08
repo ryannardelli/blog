@@ -26,13 +26,51 @@
                     <ion-icon name="search-outline"></ion-icon>
                 </label>
             </div>
+
+            {{!-- <div class="items">
+                <li class="item">
+                    <div class="item-image">
+                        <img src="https://img.freepik.com/fotos-premium/imagem-3d-da-pequena-ia-generativa-de-krishna_849906-9882.jpg"
+                            alt="Omage">
+                    </div>
+
+                    <div class="item-content">
+                        <h2 class="item-title">
+                            <h2>Avengers</h2>
+                        </h2>
+                        <p class="item-subtitle">Nome</p>
+                        <p class="item-description">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus qui error reiciendis quaerat
+                            autem similique veniam repudiandae ratione magni. Iusto amet praesentium vel accusantium
+                            incidunt impedit dolorem beatae fugiat maxime!
+                        </p>
+                    </div>
+                </li>
+            </div> --}}
+
             <!-- UserImg -->
             <div class="user">
                 <img src="{{user.profile_picture}}" alt="{{user.name}}">
             </div>
         </div>
+
+        <div class="items">
+            {{#if users.length}}
+            {{#each users}}
+            <li class="item">
+                <div class="item-image">
+                    <img src="{{this.image}}" alt="{{this.name}}" class="image-user">
+                </div>
+                <div class="item-content">
+                    <h2 class="item-title">{{this.name}}</h2>
+                    <p class="item-subtitle">{{this.role}}</p>
+                </div>
+            </li>
+            {{/each}}
+            {{else}}
+            {{/if}}
+        </div>
         {{{body}}}
-        <div class="results"></div>
     </main>
 
     <script>
@@ -47,49 +85,71 @@
         });
 
         // search User
+        const itemsContainer = document.querySelector('.items');
         document.querySelector('#search').addEventListener('input', async function () {
             const searchQuery = this.value;
-            console.log(searchQuery);
 
             if (searchQuery.length > 0) {
                 try {
                     const response = await fetch(`http://localhost:3000/dashboard/search?search=${searchQuery}`);
                     const result = await response.json();
-                    console.log(result);
-                    displayResults(result);
-                } catch (e) {
-                    console.log('Erro ao fazer a requisição: ', e)
+                    updateItems(result);
+                } catch (error) {
+                    console.error('Erro ao fazer a requisição: ', error);
                 }
             } else {
-                document.querySelector('.results').innerHTML = '';
+                document.querySelector('.items').innerHTML = ''; // Limpa os resultados ao apagar o texto
+                itemsContainer.classList.remove('show');
             }
-        })
+        });
 
-        function displayResults(users) {
-    const resultsContainer = document.querySelector('.results');
-    
-    if (!resultsContainer) {
-        console.error('Elemento de resultados não encontrado.');
-        return;
-    }
+        function updateItems(users) {
+            itemsContainer.innerHTML = ''; // Limpa os resultados anteriores
 
-    // Limpar resultados anteriores
-    resultsContainer.innerHTML = '';
+            if (users.length > 0) {
+                users.forEach(user => {
+                    itemsContainer.classList.add('show');
+                    // Criando o item principal <li>
+                    const userItem = document.createElement('li');
+                    userItem.classList.add('item');
 
-    if (users.length === 0) {
-        resultsContainer.innerHTML = '<p>Nenhum usuário encontrado.</p>';
-        return;
-    }
+                    // Criando a estrutura do item
+                    const itemImage = document.createElement('div');
+                    itemImage.classList.add('item-image');
+                    const img = document.createElement('img');
+                    img.src = user.profile_picture;
+                    img.alt = user.name;
+                    img.classList.add('image-user');
+                    itemImage.appendChild(img);
 
-    const userList = document.createElement('ul');
-    users.forEach(user => {
-        const userItem = document.createElement('li');
-        userItem.textContent = user.name;  // Exibe o nome do usuário
-        userList.appendChild(userItem);
-    });
+                    const itemContent = document.createElement('div');
+                    itemContent.classList.add('item-content');
 
-    resultsContainer.appendChild(userList);
-}
+                    const itemTitle = document.createElement('h2');
+                    itemTitle.classList.add('item-title');
+                    itemTitle.textContent = user.name || 'Usuário sem nome';
+
+                    const itemSubtitle = document.createElement('p');
+                    itemSubtitle.classList.add('item-subtitle');
+                    itemSubtitle.textContent = user.role || 'Sem cargo definido';
+
+                    // Montando o conteúdo
+                    itemContent.appendChild(itemTitle);
+                    itemContent.appendChild(itemSubtitle);
+
+                    // Montando o item completo
+                    userItem.appendChild(itemImage);
+                    userItem.appendChild(itemContent);
+
+                    // Adicionando o item ao container
+                    itemsContainer.appendChild(userItem);
+                });
+            } else {
+                // Mensagem quando não há resultados
+                {{!-- itemsContainer.innerHTML = `<p class="no-results">Nenhum usuário encontrado.</p>`; --}}
+                itemsContainer.classList.remove('show');
+            }
+        }
 
     </script>
 </body>
