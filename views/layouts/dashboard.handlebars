@@ -104,52 +104,60 @@
         });
 
         function updateItems(users) {
-            itemsContainer.innerHTML = ''; // Limpa os resultados anteriores
+    itemsContainer.innerHTML = ''; // Limpa os resultados anteriores
 
-            if (users.length > 0) {
-                users.forEach(user => {
-                    itemsContainer.classList.add('show');
-                    // Criando o item principal <li>
-                    const userItem = document.createElement('li');
-                    userItem.classList.add('item');
+    if (users.length > 0) {
+        users.forEach(user => {
+            itemsContainer.classList.add('show');
 
-                    // Criando a estrutura do item
-                    const itemImage = document.createElement('div');
-                    itemImage.classList.add('item-image');
-                    const img = document.createElement('img');
-                    img.src = user.profile_picture;
-                    img.alt = user.name;
-                    img.classList.add('image-user');
-                    itemImage.appendChild(img);
+            // Criando o item principal <li>
+            const userItem = document.createElement('li');
+            userItem.classList.add('item');
 
-                    const itemContent = document.createElement('div');
-                    itemContent.classList.add('item-content');
+            // Criando o link <a>
+            const itemLink = document.createElement('a');
+            itemLink.href = `/profile/${user.id}`; // Link para o perfil do usuário
+            itemLink.classList.add('item-link');
 
-                    const itemTitle = document.createElement('h2');
-                    itemTitle.classList.add('item-title');
-                    itemTitle.textContent = user.name || 'Usuário sem nome';
+            // Criando a estrutura do item
+            const itemImage = document.createElement('div');
+            itemImage.classList.add('item-image');
+            const img = document.createElement('img');
+            img.src = user.profile_picture;
+            img.alt = user.name;
+            img.classList.add('image-user');
+            itemImage.appendChild(img);
 
-                    const itemSubtitle = document.createElement('p');
-                    itemSubtitle.classList.add('item-subtitle');
-                    itemSubtitle.textContent = user.role || 'Sem cargo definido';
+            const itemContent = document.createElement('div');
+            itemContent.classList.add('item-content');
 
-                    // Montando o conteúdo
-                    itemContent.appendChild(itemTitle);
-                    itemContent.appendChild(itemSubtitle);
+            const itemTitle = document.createElement('h2');
+            itemTitle.classList.add('item-title');
+            itemTitle.textContent = user.name || 'Usuário sem nome';
 
-                    // Montando o item completo
-                    userItem.appendChild(itemImage);
-                    userItem.appendChild(itemContent);
+            const itemSubtitle = document.createElement('p');
+            itemSubtitle.classList.add('item-subtitle');
+            itemSubtitle.textContent = user.role || 'Sem cargo definido';
 
-                    // Adicionando o item ao container
-                    itemsContainer.appendChild(userItem);
-                });
-            } else {
-                // Mensagem quando não há resultados
-                {{!-- itemsContainer.innerHTML = `<p class="no-results">Nenhum usuário encontrado.</p>`; --}}
-                itemsContainer.classList.remove('show');
-            }
-        }
+            // Montando o conteúdo
+            itemContent.appendChild(itemTitle);
+            itemContent.appendChild(itemSubtitle);
+
+            // Adicionando os elementos ao link
+            itemLink.appendChild(itemImage);
+            itemLink.appendChild(itemContent);
+
+            // Adicionando o link ao item
+            userItem.appendChild(itemLink);
+
+            // Adicionando o item ao container
+            itemsContainer.appendChild(userItem);
+        });
+    } else {
+        // Mensagem quando não há resultados
+        itemsContainer.innerHTML = `<p class="no-results">Nenhum usuário encontrado.</p>`;
+    }
+}
 
     </script>
 </body>

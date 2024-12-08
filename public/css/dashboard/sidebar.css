@@ -190,12 +190,27 @@ body {
 
 .item-title {
     font-size: 18px;
+    padding-top: 10px;
     color: #333;
 }
 
 .item-subtitle {
     font-size: 12px;
     color: #666;
+}
+
+.item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%; /* Faz o link preencher o item */
+    height: 100%; /* Garante que o link cobre toda a altura do item */
+    padding: 10px;
+}
+
+.item-link:hover {
+    background-color: #f5f5f5;
+    border-radius: 5px;
 }
 
 .toggle {
