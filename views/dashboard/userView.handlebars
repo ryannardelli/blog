@@ -3,12 +3,59 @@
 <link rel="stylesheet" href="/css/dashboard/user.css">
 
 <body>
-    <h1>Hello User</h1>
-    
-    <div class="user-profile">
-    <img src="{{user.profile_picture}}" alt="{{user.name}}">
-    <h1>{{user.name}}</h1>
-    <p>{{user.role}}</p>
-    <p>{{user.email}}</p>
-</div>
+    <div class="header__wrapper">
+        <header></header>
+        <div class="cols__container">
+            <div class="left__col">
+                <div class="img__container">
+                    <img src="{{user.profile_picture}}" alt="{{user.name}}" />
+                    <span></span>
+                </div>
+                <h2>{{user.firstName}} {{user.lastName}}</h2>
+                <p>{{user.role}}</p>
+                <p>{{user.email}}</p>
+
+                <ul class="about">
+                    <li><span>4,073</span>Followers</li>
+                    <li><span>322</span>Following</li>
+                    <li><span>200</span>Posts</li>
+                </ul>
+
+                <div class="content">
+                    <p>
+                        {{user.bio}}
+                    </p>
+
+                    <ul>
+                        <li><i class="bi bi-instagram"></i></li>
+                        <i class="bi bi-github"></i>
+                        <i class="bi bi-linkedin"></i>
+                    </ul>
+                </div>
+            </div>
+            <div class="right__col">
+                <nav>
+                    <ul>
+                        <li><a href="#">posts</a></li>
+                    </ul>
+                    <button>Follow</button>
+                </nav>
+
+                <div class="photos">
+                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_1.avif"
+                        alt="Photo" />
+                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_2.avif"
+                        alt="Photo" />
+                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_3.avif"
+                        alt="Photo" />
+                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_4.avif"
+                        alt="Photo" />
+                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_5.avif"
+                        alt="Photo" />
+                    <img src="https://raw.githubusercontent.com/programmercloud/responsive-profile-page/refs/heads/main/img/img_6.avif"
+                        alt="Photo" />
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
