@@ -23,4 +23,6 @@ router.get('/postViewHome/:id', DashboardController.showPostViewPerHome);
 router.post('/updateImageProfile', DashboardController.updateProfilePicture);
 router.post('/uploadImagePost/:id', DashboardController.uploadImagePost);
 
+router.get('/search', DashboardController.searchUser);
+
 module.exports = router;

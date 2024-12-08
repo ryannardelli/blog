@@ -32,6 +32,7 @@
             </div>
         </div>
         {{{body}}}
+        <div class="results"></div>
     </main>
 
     <script>
@@ -44,6 +45,52 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         });
+
+        // search User
+        document.querySelector('#search').addEventListener('input', async function () {
+            const searchQuery = this.value;
+            console.log(searchQuery);
+
+            if (searchQuery.length > 0) {
+                try {
+                    const response = await fetch(`http://localhost:3000/dashboard/search?search=${searchQuery}`);
+                    const result = await response.json();
+                    console.log(result);
+                    displayResults(result);
+                } catch (e) {
+                    console.log('Erro ao fazer a requisição: ', e)
+                }
+            } else {
+                document.querySelector('.results').innerHTML = '';
+            }
+        })
+
+        function displayResults(users) {
+    const resultsContainer = document.querySelector('.results');
+    
+    if (!resultsContainer) {
+        console.error('Elemento de resultados não encontrado.');
+        return;
+    }
+
+    // Limpar resultados anteriores
+    resultsContainer.innerHTML = '';
+
+    if (users.length === 0) {
+        resultsContainer.innerHTML = '<p>Nenhum usuário encontrado.</p>';
+        return;
+    }
+
+    const userList = document.createElement('ul');
+    users.forEach(user => {
+        const userItem = document.createElement('li');
+        userItem.textContent = user.name;  // Exibe o nome do usuário
+        userList.appendChild(userItem);
+    });
+
+    resultsContainer.appendChild(userList);
+}
+
     </script>
 </body>
 

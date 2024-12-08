@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Post = require("../models/Post");
+const { Op } = require('sequelize');
 const path = require("path");
 
 const moment = require("moment");
@@ -401,5 +402,36 @@ module.exports = class DashboardController {
       console.error("Erro ao atualizar a imagem de perfil:", error);
       res.status(500).send("Erro ao atualizar a imagem de perfil.");
     }
+  }
+
+  // static async searchUser(req, res) {
+  //   const { search } = req.query;
+  
+  //   try {
+  //     // Buscar todos os usuários que contenham o termo 'search' no nome
+  //     const result = await User.findAll({
+  //       where: {
+  //         name: {
+  //           [Op.iLike]: `%${search}%` // Usando o operador LIKE para buscar por nome
+  //         }
+  //       }
+  //     });
+  
+  //     // Retornar os nomes encontrados
+  //     return res.json(result.map(user => user.name));
+  //   } catch (error) {
+  //     return res.status(500).json({ error: 'Erro ao buscar usuários' });
+  //   }
+  // }
+
+  static async searchUser(req, res) {
+    const { search } = req.query;
+    const result = await User.findAll({
+      where : {
+        name: {
+         [Op.like]: `%${search}%`,
+      }},
+    });
+    return res.json(result);
   }
 };
