@@ -25,6 +25,6 @@ router.post('/uploadImagePost/:id', DashboardController.uploadImagePost);
 
 router.get('/search', DashboardController.searchUser);
 
-router.get('/userView/:id', DashboardController.userProfile);
+router.get('/:id', DashboardController.userProfile);
 
 module.exports = router;

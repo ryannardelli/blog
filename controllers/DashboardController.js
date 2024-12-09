@@ -423,6 +423,9 @@ module.exports = class DashboardController {
       // Supondo que você tenha um modelo User e Post para buscar as postagens
       const user = await User.findByPk(id); // Busca o usuário
       const posts = await Post.findAll({ where: { userId: id } }); // Busca as postagens do usuário
+      // const isAuthenticated = req.session.login;
+
+      // console.log('Usuário logado: ', isAuthenticated);
   
       if (!user) {
         return res.status(404).send("Usuário não encontrado");

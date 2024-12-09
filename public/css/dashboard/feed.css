@@ -272,11 +272,21 @@ form input[type="file"] {
     text-indent: 30px;
 }
 
-
 #backButton {
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 1.3rem;
+}
+
+.link-profile {
+    text-decoration: none;
+    color: #1E90FF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.link-profile:hover {
+    color: #007bff;
 }
 
 /* Ajustes responsivos */

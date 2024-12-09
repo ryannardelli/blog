@@ -17,7 +17,9 @@
 
                 <p class="post-meta">
                     <!-- Autor do Post -->
-                    Por <span class="post-author">{{user.name}}</span> em
+                    Por <span class="post-author">
+                        <a href="/userView/{{user.id}}" class="link-profile">{{user.name}}</a>
+                    </span> em
                     <span class="post-date">{{post.createdAt}}</span>
                 </p>
 
