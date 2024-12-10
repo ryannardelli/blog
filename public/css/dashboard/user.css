@@ -50,7 +50,8 @@ a {
 }
 .header__wrapper .cols__container .left__col .img__container span {
   position: absolute;
-  background: #2afa6a;
+  /* background: #2afa6a; */
+  background: #808080;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -58,6 +59,11 @@ a {
   right: 11px;
   border: 2px solid #fff;
 }
+
+.header__wrapper .cols__container .left__col .img__container span.online {
+    background: #2afa6a;
+}
+
 .header__wrapper .cols__container .left__col h2 {
   margin-top: 60px;
   font-weight: 600;

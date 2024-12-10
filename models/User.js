@@ -59,7 +59,7 @@ const User = db.define("User", {
   profile_picture: {
     type: DataTypes.STRING,
     allowNull: true,
-    defaultValue: "https://www.gov.br/cdn/sso-status-bar/src/image/user.png",
+    defaultValue: "https://www.vozdobico.com.br/wp-content/uploads/2021/01/perfil-sem-foto-fake.jpg",
   },
 });
 

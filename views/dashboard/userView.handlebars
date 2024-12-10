@@ -9,7 +9,8 @@
             <div class="left__col">
                 <div class="img__container">
                     <img src="{{user.profile_picture}}" alt="{{user.name}}" />
-                    <span></span>
+                    <span class="{{#if isOnline}}online{{/if}}"></span>
+                    {{!-- <span></span> --}}
                 </div>
                 <h2>{{user.firstName}} {{user.lastName}}</h2>
                 <p>{{user.role}}</p>
