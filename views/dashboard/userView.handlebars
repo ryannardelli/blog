@@ -38,12 +38,14 @@
                     <ul>
                         <li><a href="#">posts</a></li>
                     </ul>
-                    <button>Follow</button>
+                    {{#if isAuthenticated}}
+                        <button>Follow</button>
+                    {{/if}}
                 </nav>
 
                 <div class="photos">
                     {{#each posts}}
-                    <img src="{{this.post_picture}}" alt="Photo"/>
+                    <img src="{{this.post_picture}}" alt="Photo" />
                     {{/each}}
                 </div>
             </div>

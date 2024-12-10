@@ -418,14 +418,11 @@ module.exports = class DashboardController {
 
   static async userProfile(req, res) {
     try {
-        if (!req.session || !req.session.login || !req.session.userId) {
-            return res.redirect('/login');
-        }
-
         const id = parseInt(req.params.id);
         const loggedInUserId = req.session.userId;
+        const isAuthenticated = !!req.session?.login;
+        const user = await User.findByPk(id);
 
-        const user = await User.findByPk(id); 
         if (!user) {
             return res.status(404).send("Usuário não encontrado");
         }
@@ -440,6 +437,7 @@ module.exports = class DashboardController {
             posts: posts.map(post => post.toJSON()),
             postCount,
             isOnline,
+            isAuthenticated
         });
     } catch (error) {
         console.error("Erro ao buscar usuário ou postagens: ", error);
