@@ -417,39 +417,35 @@ module.exports = class DashboardController {
   }
 
   static async userProfile(req, res) {
-    const id = req.params.id; // ID do usuário acessado na URL
-
     try {
-        const user = await User.findByPk(id); // Busca o usuário pelo ID fornecido na rota
+        if (!req.session || !req.session.login || !req.session.userId) {
+            return res.redirect('/login');
+        }
+
+        const id = parseInt(req.params.id);
+        const loggedInUserId = req.session.userId;
+
+        const user = await User.findByPk(id); 
         if (!user) {
             return res.status(404).send("Usuário não encontrado");
         }
 
-        const posts = await Post.findAll({ where: { userId: id } }); // Busca as postagens do usuário
-
-        // Obtém o ID do usuário logado (ajuste conforme sua implementação de sessão)
-        const loggedInUserId = req.session?.user?.id;
-
-        // Verifica se o usuário acessado é o mesmo que o usuário logado
-        const isOnline = parseInt(id) === loggedInUserId;
-
-        console.log('Usuário logado ID:', loggedInUserId);
-        console.log('Usuário acessado ID:', id);
-        console.log('Está online?', isOnline);
-
+        const posts = await Post.findAll({ where: { userId: id } });
         const postCount = await Post.count({ where: { userId: id } });
 
-        // Renderiza o template com os dados necessários
+        const isOnline = id === loggedInUserId;
+
         res.render("dashboard/userView", {
             user: user.toJSON(),
             posts: posts.map(post => post.toJSON()),
             postCount,
-            isOnline, // Passa o estado "online" para o template
+            isOnline,
         });
     } catch (error) {
         console.error("Erro ao buscar usuário ou postagens: ", error);
         res.status(500).send("Erro ao renderizar a página do usuário");
     }
 }
+
 
 };
