@@ -61,6 +61,17 @@ section.bg-light p {
     text-align: center;
 }
 
+@media (max-width: 480px) {
+    .btn-primary {
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    img.rounded {
+        margin-bottom: 20px;
+    }
+}
+
 @media (min-width: 768px) {
     #about-me p, h2 {
         text-align: left;
